@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="vanillatoasts.css">
+</head>
+<body>
+
+
+
+          <button class="btn btn-primary" onclick="create('asdf','Demo Text','success','d','4000')">Create</button>
+        
+
+</body>
+
+<script src="VanillaToasts.js"></script>
+
+
+  <script>
+
+  function create(title,text,type,icon,timeout) {
+    VanillaToasts.create({
+      title: title,
+      text: text,
+      type: type,
+      icon: icon,
+      timeout: timeout
+    });
+  }
+
+  </script>
+
+</html>

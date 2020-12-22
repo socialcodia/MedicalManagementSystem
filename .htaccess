@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteRule ^login?$ index.php
+RewriteRule ^sell?$ sellproduct.php
+RewriteRule ^products?$ allproducts.php
+RewriteRule ^addproduct?$ addproduct.php
+RewriteRule ^addbrand?$ addbrand.php
+RewriteRule ^addsize?$ addsize.php
+RewriteRule ^addcategory?$ addcategory.php
+RewriteRule ^addlocation?$ addlocation.php
+RewriteRule ^salestoday?$ salestoday.php
+RewriteRule ^salesall?$ salesall.php
+RewriteRule ^productsnotice?$ productsnotice.php
+RewriteRule ^expiredproducts?$ expiredproducts.php
+RewriteRule ^expiringproducts?$ expiringproducts.php
+RewriteRule ^addproductsinfo?$ addproductsinfo.php
+RewriteRule ^productsrecord?$ productsrecord.php
+RewriteRule ^dashboard?$ dashboard.php
