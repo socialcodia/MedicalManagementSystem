@@ -6,7 +6,6 @@
 	$api = new API;
 
 	$response = $api->getProducts();
-	$products = $response->products;
 ?>
 <style type="text/css">
 tr.normal td {
@@ -19,6 +18,11 @@ tr.highlighted td {
 }
 </style>
 
+  <?php if(!$response->error) 
+  {
+    $products = $response->products;
+  ?>
+
     <div class="socialcodia">
         <div class="row">
         	<div class="card z-depth-0" style="margin: 10px">
@@ -28,10 +32,10 @@ tr.highlighted td {
 		                <label for="productName">Enter Product Name</label>
 		            </div>
 		        </div>
-		    </div>
-		    <div class="card z-depth-0 blue lighten-3" style="margin: 10px; min-height: 490px;">
-		        <div class="card-content">
-		            <table id="productTable" class="highlight responsive-table ">
+		      </div>
+  		    <div class="card z-depth-0 blue lighten-3" style="margin: 10px; min-height: 490px;">
+  	        <div class="card-content">
+  	            <table id="productTable" class="highlight responsive-table ">
                   <thead>
                     <tr>
                         <th>Sr No</th>
@@ -48,62 +52,74 @@ tr.highlighted td {
                   <tbody id="SellRecordTableBody" style="font-weight: bold;">
   				        </tbody>
                 </table>
-		        </div>
-		    </div>
+  	        </div>
+  		    </div>
         </div>
 
             <!-- tr.innerHTML='<td><td><input type="text" id="sellId" readonly="readonly"></td></td>'; -->
 
         <div id="modal1" class="modal modal-fixed-footer">
-		    <div class="modal-content">
-		    	<div class="input-field">
-                    <input type="text" autofocus name="productName" id="productName" placeholder="" onkeyup="filterProduct()" autofocus="off">
-                    <label for="productName">Enter Product Name</label>
-                </div>
-		    	<div id="results" class="scrollingdatagrid">	
-			    <table id="mstrTable" class="display" cellspacing="0" width="100%">
-				    <thead>
-				      <tr>
-			              <th>SR. NO</th>
-			              <th>Category</th>
-			              <th>Name</th>
-			              <th>Size</th>
-			              <th>Price</th>
-			              <th>Quantity</th>
-			              <th>Location</th>
-			              <th>Brand</th>
-			              <th>Manufacture</th>
-			              <th>Expire</th>
-				      </tr>
-				   </thead>
-				   <tbody>
-                        <?php
-                        $count = 1;
-                          foreach ($products as $product)
-                          {
-                            echo "<tr>";
-                            echo "<td>$count</td>";
-                            echo "<td class='hide' id='$product->productId'>$product->productId</td>";
-                            echo "<td>$product->productCategory</td>";
-                            echo "<td style='font-weight:bold'>$product->productName</td>";
-                            echo "<td style='font-weight:bold'>$product->productSize</td>";
-                            echo "<td style='font-weight:bold'>$product->productPrice</td>";
-                            echo "<td style='font-weight:bold'>$product->productQuantity</td>";
-                            echo "<td>$product->productLocation</td>";
-                            echo "<td>$product->productBrand</td>";
-                            echo "<td>$product->productManufacture</td>";
-                            echo "<td>$product->productExpire</td>";
-                            $count++;
-                            echo "</tr>";
-                          }
-                        ?>
-				   </tbody>
-				</table>
-			</div>	
-		    </div>
+		      <div class="modal-content">
+  		    	<div class="input-field">
+                <input type="text" autofocus name="productName" id="productName" placeholder="" onkeyup="filterProduct()" autofocus="off">
+                <label for="productName">Enter Product Name</label>
+            </div>
+  		    	<div id="results" class="scrollingdatagrid">	
+    			    <table id="mstrTable" class="display" cellspacing="0" width="100%">
+    				    <thead>
+    				      <tr>
+    			              <th>SR. NO</th>
+    			              <th>Category</th>
+    			              <th>Name</th>
+    			              <th>Size</th>
+    			              <th>Price</th>
+    			              <th>Quantity</th>
+    			              <th>Location</th>
+    			              <th>Brand</th>
+    			              <th>Manufacture</th>
+    			              <th>Expire</th>
+    				      </tr>
+    				    </thead>
+    				    <tbody>
+                            <?php
+                            $count = 1;
+                              foreach ($products as $product)
+                              {
+                                echo "<tr>";
+                                echo "<td>$count</td>";
+                                echo "<td class='hide' id='$product->productId'>$product->productId</td>";
+                                echo "<td>$product->productCategory</td>";
+                                echo "<td style='font-weight:bold'>$product->productName</td>";
+                                echo "<td style='font-weight:bold'>$product->productSize</td>";
+                                echo "<td style='font-weight:bold'>$product->productPrice</td>";
+                                echo "<td style='font-weight:bold'>$product->productQuantity</td>";
+                                echo "<td>$product->productLocation</td>";
+                                echo "<td>$product->productBrand</td>";
+                                echo "<td>$product->productManufacture</td>";
+                                echo "<td>$product->productExpire</td>";
+                                $count++;
+                                echo "</tr>";
+                              }
+                            ?>
+    				    </tbody>
+    				  </table>
+  			    </div>	
+		      </div>
 		  </div>
     </div>
+  <?php }
+  else
+  {
+    ?>
 
+    <div class="socialcodia center">
+          <h4>No Products To Sale</h4>
+          <img class="verticalCenter socialcodia" src="src/img/empty_cart.svg">
+    </div>
+
+    <?php
+  }
+  ?>
 
 
 <?php require_once dirname(__FILE__).'/include/sidenav.php'; ?>

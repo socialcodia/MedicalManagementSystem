@@ -2,6 +2,27 @@
     require_once dirname(__FILE__).'/include/header.php';
     require_once dirname(__FILE__).'/include/api.php';
     require_once dirname(__FILE__).'/include/navbar.php';
+
+    if (isset($_GET['pid'])) 
+        $productId = $_GET['pid'];
+    else
+        header('LOCATION:dashboard');
+
+    $api = new API;
+    $response = $api->getProductById($productId); 
+
+    if(!$response->error)
+    {
+        print_r($response);
+        $product = $response->products;
+        $productName = $product->productName;
+        $productPrice = $product->productPrice;
+        $productQuantity = $product->productQuantity;
+        $productId = $product->productId;
+        $productName = $product->productName;
+        $productName = $product->productName;
+        $productName = $product->productName;
+    }
 ?>
 
 
@@ -46,18 +67,18 @@
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">store</i>
-                            <input type="text" name="productName" id="productName">
+                            <input type="text" name="productName" id="productName" value="<?php echo $productName; ?>">
                             <label for="productName">Enter Product Name</label>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">monetization_on</i>
-                                <input  id="productPrice" type="number" class="validate">
+                                <input  id="productPrice" type="number" class="validate" value="<?php echo $productPrice; ?>">
                                 <label for="productPrice">Product Price</label>
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">loupe</i>
-                                <input  id="productQuantity" type="number" class="validate">
+                                <input  id="productQuantity" type="number" value="<?php echo $productQuantity; ?>" class="validate">
                                 <label for="productQuantity">Product Quantity</label>
                             </div>
                         </div>
@@ -84,7 +105,6 @@
                                 <div class="input-field col l6">
                                     <select id="manYear">
                                         <option value="0" disabled selected>Year</option>
-                                        <option value='2023'>2023</option>
                                         <option value='2022'>2022</option>
                                         <option value='2021'>2021</option>
                                         <option value='2020'>2020</option>

@@ -71,6 +71,11 @@ class Api
         return $this->getMethodApi("user");
     }
 
+    function getProductById($productId)
+    {
+        return $this->getMethodApi("get/product/".$productId);
+    }
+
     function getProducts()
     {
         return $this->getMethodApi("get/products");

@@ -13,7 +13,7 @@
                         <p class="center card-title" style="font-weight:bold">Add Brand</p>
                         <div class="input-field">
                             <input type="text" name="brandName" id="brandName">
-                            <label for="brandName blue-text">Enter Brand Name</label>
+                            <label for="brandName">Enter Brand Name</label>
                         </div>
                         <div class="input-field center">
                             <button type="submit" class="btn blue" onclick="addBrand()" name="btnAddBrand" id="btnAddBrand">Add Brand</button>
@@ -27,7 +27,7 @@
                         <p class="center card-title" style="font-weight:bold">Add Category</p>
                         <div class="input-field">
                             <input type="text" name="categoryName" id="categoryName">
-                            <label for="categoryName blue-text">Enter Category Name</label>
+                            <label for="categoryName">Enter Category Name</label>
                         </div>
                         <div class="input-field center">
                             <button type="submit" class="btn blue" onclick="addCategory()" name="btnAddCategory" id="btnAddCategory">Add Category</button>
@@ -41,7 +41,7 @@
                         <p class="center card-title" style="font-weight:bold">Add Size</p>
                         <div class="input-field">
                             <input type="text" name="sizeName" id="sizeName" placeholder="50Ml or 15GM">
-                            <label for="sizeName blue-text">Enter Size Name</label>
+                            <label for="sizeName">Enter Size Name</label>
                         </div>
                         <div class="input-field center">
                             <button type="submit" class="btn blue" onclick="addSize()" name="btnAddSize" id="btnAddSize">Add Size</button>
@@ -55,7 +55,7 @@
                         <p class="center card-title" style="font-weight:bold">Add Location</p>
                         <div class="input-field">
                             <input type="text" name="locationName" id="locationName">
-                            <label for="locationName blue-text">Enter Location Name</label>
+                            <label for="locationName">Enter Location Name</label>
                         </div>
                         <div class="input-field center">
                             <button type="submit" class="btn blue" onclick="addLocation()" name="btnAddLocation" id="btnAddLocation">Add Location</button>
