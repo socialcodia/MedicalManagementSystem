@@ -70,12 +70,11 @@
                                 echo "<td>$product->productBrand</td>";
                                 echo "<td>$product->productManufacture</td>";
                                 echo "<td>$product->productExpire</td>";
-                                echo "<td>".date('H:i d/m/yy',$t);".</td>";
+                                echo "<td class='center'>".date('H:i',$t);".</td>";
                                 echo '<td><button id="btnDelete'.$product->saleId.'" value="'.$product->saleId.'" onclick="alertDeleteSaleProduct(this.value)" style="border: 1px solid white;border-radius: 50%;" class="btn red"><i class="material-icons white-text">delete_forever</i></button></td>';
                                 $count++;
                                 echo "</tr>";
                               }
-                              echo $totalEndPrice;
                             ?>
                           </tr>
                         </tbody>

@@ -22,7 +22,7 @@
   function openModal(){
     $('#modal1').modal('open');
   }
-
+  let token = getToken();
   $(document).ready(function ()
   {
     $('.modal').modal();
@@ -39,6 +39,31 @@
       getLocations();
     }
   });
+
+function playSuccess()
+{
+  let audio = new Audio('src/aud/success.ogg');
+  audio.play();
+}
+
+function playError()
+{
+  let audio = new Audio('src/aud/error.ogg');
+  audio.play();
+}
+
+
+function playWarning()
+{
+  let audio = new Audio('src/aud/warning.ogg');
+  audio.play();
+}
+
+function getToken() {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; token=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
 function changePageName()
 {
@@ -332,6 +357,7 @@ function openModalTextController()
       
       if (selectBrand.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Select Brand"
@@ -340,6 +366,7 @@ function openModalTextController()
       }
       if (selectCategory.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Select Category"
@@ -348,6 +375,7 @@ function openModalTextController()
       }
       if (selectSize.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Select Size"
@@ -356,6 +384,7 @@ function openModalTextController()
       }
       if (selectLocation.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Select location"
@@ -364,6 +393,7 @@ function openModalTextController()
       }
       if (productName.value=='')
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Enter Product"
@@ -372,6 +402,7 @@ function openModalTextController()
       }
       if (productName.value.length<4)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "product Name too short"
@@ -380,6 +411,7 @@ function openModalTextController()
       }
       if (productPrice.value=='')
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Enter Price"
@@ -388,6 +420,7 @@ function openModalTextController()
       }
       if (productPrice.value<10)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "price too short"
@@ -396,6 +429,7 @@ function openModalTextController()
       }
       if (productQuantity.value=='')
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Enter Quantity"
@@ -404,6 +438,7 @@ function openModalTextController()
       }
       if (productQuantity.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "product Quantity too short"
@@ -412,6 +447,7 @@ function openModalTextController()
       }
       if (manMonth.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Select Manufacture Month"
@@ -420,6 +456,7 @@ function openModalTextController()
       }
       if (manYear.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Select Manufacture Year"
@@ -428,6 +465,7 @@ function openModalTextController()
       }
       if (expMonth.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Select Expire Month"
@@ -436,6 +474,7 @@ function openModalTextController()
       }
       if (expYear.value<1)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Select Expire Year"
@@ -448,6 +487,7 @@ function openModalTextController()
       let b = new Date(productExpireDate);
       if (a>b)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "The Manufacture date could not be greater than expire date"
@@ -458,7 +498,7 @@ function openModalTextController()
       
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"post",
         url:BASE_URL+"add/product",
@@ -479,16 +519,17 @@ function openModalTextController()
           console.log(response);
           if (!response.error)
           {
-          console.log(response);
-
+            playSuccess();
+            console.log(response);
             Toast.fire({
-                  icon: 'error',
+                  icon: 'success',
                   title: response.message
               });
             btnAddProduct.classList.remove('disabled');
           }
           else
           {
+            playWarning();
             productName.value = '';
             productPrice.value = '';
             productQuantity.value = '';
@@ -497,7 +538,7 @@ function openModalTextController()
             // expMonth.selectedIndex = 0;
             // expYear.selectedIndex = 0;
             Toast.fire({
-              icon: 'success',
+              icon: 'error',
               title: response.message
             });
             btnAddProduct.classList.remove('disabled');
@@ -513,7 +554,7 @@ function openModalTextController()
       btnDelete.classList.add('disabled');
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"post",
         url:BASE_URL+"product/sell/delete",
@@ -526,6 +567,7 @@ function openModalTextController()
           console.log(response);
           if (!response.error)
           {
+            playSuccess();
             row.remove();
             Toast.fire({
                   icon: 'success',
@@ -535,6 +577,7 @@ function openModalTextController()
           }
           else
           {
+            playWarning();
             Toast.fire({
               icon: 'error',
               title: response.message
@@ -555,11 +598,12 @@ function openModalTextController()
           confirmButtonColor: '#d33',
           cancelButtonColor: '#3085d6',
           confirmButtonText: 'Delete Entry'
-        }).then((result) => {
-          if (result.isConfirmed) {
+          }).then((result) => {
+          if (result.isConfirmed) 
+          {
             deleteSoldProduct(value);
           }
-        })
+          });
     }
 
     function addBrand()
@@ -568,6 +612,7 @@ function openModalTextController()
       let btnAddBrand = document.getElementById('btnAddBrand');
       if (brandName.value=='')
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Enter Brand Name"
@@ -576,6 +621,7 @@ function openModalTextController()
       }
       if (brandName.value.length<3)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Brand Name too short"
@@ -585,7 +631,7 @@ function openModalTextController()
       btnAddBrand.classList.add('disabled');
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"post",
         url:BASE_URL+"add/brand",
@@ -597,16 +643,19 @@ function openModalTextController()
         {
           if (!response.error)
           {
+            playSuccess();
+            brandName.value = '';
             Toast.fire({
-                  icon: 'error',
+                  icon: 'success',
                   title: response.message
               });
             btnAddBrand.classList.remove('disabled');
           }
           else
           {
+            playWarning();
             Toast.fire({
-              icon: 'success',
+              icon: 'error',
               title: response.message
             });
             btnAddBrand.classList.remove('disabled');
@@ -614,6 +663,7 @@ function openModalTextController()
         }
       });
     }
+
     let count = 1;
     function sellProduct(value)
     {
@@ -621,6 +671,7 @@ function openModalTextController()
       let SellRecordTableBody = document.getElementById('SellRecordTableBody');
         if (value=='')
         {
+            playError();
             Toast.fire({
                       icon: 'error',
                       title: "Failed To Fetch Product Id"
@@ -631,7 +682,7 @@ function openModalTextController()
       // btnAddBrand.classList.add('disabled');
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"post",
         url:BASE_URL+"product/sell",
@@ -644,6 +695,7 @@ function openModalTextController()
           console.log(response);
           if (!response.error)
           {
+            playSuccess();
             let product = response.product;
             let tr = document.createElement('tr');
             tr.id = 'rowId'+product.saleId;
@@ -669,6 +721,7 @@ function openModalTextController()
           }
           else
           {
+            playWarning();
             Toast.fire({
               icon: 'error',
               title: response.message
@@ -690,6 +743,7 @@ function openModalTextController()
       let price = productSellPrice.value;
       if (quantity<1)
       {
+        playWarning();
         Toast.fire({
             icon: 'error',
             title: 'Product Quantity Is Low'
@@ -699,7 +753,7 @@ function openModalTextController()
       btnUpdate.classList.add('disabled');
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"post",
         url:BASE_URL+"product/sell/update",
@@ -714,7 +768,8 @@ function openModalTextController()
           console.log(response);
           if (!response.error)
           {
-            btnUpdate.style.display = 'none'; 
+            btnUpdate.style.display = 'none';
+            playSuccess(); 
             Toast.fire({
               icon: 'success',
               title: response.message
@@ -722,6 +777,7 @@ function openModalTextController()
           }
           else
           {
+            playError();
             if (new String(response.message).valueOf() == new String("Product Not Available").valueOf())
             {
               let productAC = parseInt(productAllQuantity.innerText)+1;
@@ -734,6 +790,7 @@ function openModalTextController()
             }
             else
             {
+              playWarning();
               Toast.fire({
                 icon: 'error',
                 title: response.message
@@ -776,7 +833,7 @@ function openModalTextController()
     {
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"get",
         url:BASE_URL+"get/brands",
@@ -794,6 +851,7 @@ function openModalTextController()
           }
           else
           {
+            playWarning();
             Toast.fire({
               icon: 'error',
               title: response.message
@@ -807,7 +865,7 @@ function openModalTextController()
     {
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"get",
         url:BASE_URL+"get/sizes",
@@ -825,6 +883,7 @@ function openModalTextController()
           }
           else
           {
+            playWarning();
             Toast.fire({
               icon: 'error',
               title: response.message
@@ -840,7 +899,7 @@ function openModalTextController()
 
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"get",
         url:BASE_URL+"get/categories",
@@ -858,6 +917,7 @@ function openModalTextController()
           }
           else
           {
+            playWarning();
             Toast.fire({
               icon: 'error',
               title: response.message
@@ -871,7 +931,7 @@ function openModalTextController()
     {
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"get",
         url:BASE_URL+"get/locations",
@@ -889,6 +949,7 @@ function openModalTextController()
           }
           else
           {
+            playWarning();
             Toast.fire({
               icon: 'error',
               title: response.message
@@ -905,7 +966,7 @@ function openModalTextController()
       let select = document.getElementById('selectLocation');
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"get",
         url:BASE_URL+"get/products",
@@ -922,6 +983,7 @@ function openModalTextController()
           }
           else
           {
+            playWarning();
             Toast.fire({
               icon: 'error',
               title: response.message
@@ -942,6 +1004,7 @@ function openModalTextController()
       let btnAddSize = document.getElementById('btnAddSize');
       if (sizeName.value=='')
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Enter Size Name"
@@ -950,6 +1013,7 @@ function openModalTextController()
       }
       if (sizeName.value.length<4)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Size Name too short"
@@ -959,7 +1023,7 @@ function openModalTextController()
       btnAddSize.classList.add('disabled');
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"post",
         url:BASE_URL+"add/size",
@@ -971,16 +1035,19 @@ function openModalTextController()
         {
           if (!response.error)
           {
+            playSuccess();
             Toast.fire({
-                  icon: 'error',
+                  icon: 'success',
                   title: response.message
               });
+            sizeName.value = '';
             btnAddSize.classList.remove('disabled');
           }
           else
           {
+            playWarning();
             Toast.fire({
-              icon: 'success',
+              icon: 'error',
               title: response.message
             });
             btnAddSize.classList.remove('disabled');
@@ -995,6 +1062,7 @@ function openModalTextController()
       let btnAddCategory = document.getElementById('btnAddCategory');
       if (categoryName.value=='')
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Enter Category Name"
@@ -1003,6 +1071,7 @@ function openModalTextController()
       }
       if (categoryName.value.length<4)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Category Name too short"
@@ -1012,7 +1081,7 @@ function openModalTextController()
       btnAddCategory.classList.add('disabled');
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"post",
         url:BASE_URL+"add/category",
@@ -1024,16 +1093,19 @@ function openModalTextController()
         {
           if (!response.error)
           {
+            playSuccess();
             Toast.fire({
-                  icon: 'error',
+                  icon: 'success',
                   title: response.message
               });
+            categoryName.value = '';
             btnAddCategory.classList.remove('disabled');
           }
           else
           {
+            playWarning();
             Toast.fire({
-              icon: 'success',
+              icon: 'error',
               title: response.message
             });
             btnAddCategory.classList.remove('disabled');
@@ -1048,6 +1120,7 @@ function openModalTextController()
       let btnAddLocation = document.getElementById('btnAddLocation');
       if (locationName.value=='')
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Enter Location Name"
@@ -1056,6 +1129,7 @@ function openModalTextController()
       }
       if (locationName.value.length<2)
       {
+        playWarning();
         Toast.fire({
                   icon: 'error',
                   title: "Location Name too short"
@@ -1065,7 +1139,7 @@ function openModalTextController()
       btnAddLocation.classList.add('disabled');
       $.ajax({
         headers:{  
-           'token':"<?php if (isset($_COOKIE['token'])) echo $_COOKIE['token']; ?>"
+           'token':token
         },
         type:"post",
         url:BASE_URL+"add/location",
@@ -1077,16 +1151,19 @@ function openModalTextController()
         {
           if (!response.error)
           {
+            playSuccess();
             Toast.fire({
-                  icon: 'error',
+                  icon: 'success',
                   title: response.message
               });
+            locationName.value = '';
             btnAddLocation.classList.remove('disabled');
           }
           else
           {
+            playWarning();
             Toast.fire({
-              icon: 'success',
+              icon: 'error',
               title: response.message
             });
             btnAddLocation.classList.remove('disabled');
