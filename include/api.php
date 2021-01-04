@@ -126,6 +126,16 @@ class Api
         return $this->getMethodApi("counts/brands");
     }
 
+    function getNoticeProductsCount()
+    {
+        return $this->getMethodApi("counts/products/notice");
+    }
+
+    function getExpiringProductsCount()
+    {
+        return $this->getMethodApi("counts/products/expiring");
+    }
+
     function getMethodApi($endPoint)
     {
         $domain = API_URL;

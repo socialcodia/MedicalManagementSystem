@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="css/socialcodia.css">
         <link rel="stylesheet" href="css/toast.css">
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="icon" href="src/img/icon_.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="src/icons/home.png" type="image/gif" sizes="16x16">
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> -->
 
       <link rel="stylesheet" type="text/css" href="css/datatables.min.css">

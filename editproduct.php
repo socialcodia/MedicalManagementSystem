@@ -23,8 +23,17 @@
         $productName = $product->productName;
         $productName = $product->productName;
     }
+    else
+    {
+        // $productName = '';
+        // $productPrice = '';
+        // $productQuantity = '';
+        // $productId = '';
+        // $productName = '';
+        // $productName = '';
+        // $productName = '';
+    }
 ?>
-
 
     <div class="socialcodia">
         <div class="row">
@@ -159,7 +168,7 @@
                             </div>
                         </div>
                         <div class="input-field center">
-                            <button type="submit" class="btn blue btn-large" style="width: 50%" onclick="addProduct()" name="btnAddProduct" id="btnAddProduct">Add Product</button>
+                            <button type="submit" class="btn blue btn-large" style="width: 50%" onclick="addProduct()" name="btnAddProduct" id="btnAddProduct">Update Product</button>
                         </div>
                     </div>
                 </div>

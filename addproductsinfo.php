@@ -12,7 +12,7 @@
                     <div class="card-content">
                         <p class="center card-title" style="font-weight:bold">Add Brand</p>
                         <div class="input-field">
-                            <input type="text" name="brandName" id="brandName">
+                            <input type="text" style="text-transform:uppercase" name="brandName" id="brandName">
                             <label for="brandName">Enter Brand Name</label>
                         </div>
                         <div class="input-field center">
@@ -26,7 +26,7 @@
                     <div class="card-content">
                         <p class="center card-title" style="font-weight:bold">Add Category</p>
                         <div class="input-field">
-                            <input type="text" name="categoryName" id="categoryName">
+                            <input type="text" style="text-transform:uppercase" name="categoryName" id="categoryName">
                             <label for="categoryName">Enter Category Name</label>
                         </div>
                         <div class="input-field center">
@@ -40,7 +40,7 @@
                     <div class="card-content">
                         <p class="center card-title" style="font-weight:bold">Add Size</p>
                         <div class="input-field">
-                            <input type="text" name="sizeName" id="sizeName" placeholder="50Ml or 15GM">
+                            <input type="text" style="text-transform:uppercase" name="sizeName" id="sizeName" placeholder="50Ml or 15GM">
                             <label for="sizeName">Enter Size Name</label>
                         </div>
                         <div class="input-field center">
@@ -54,7 +54,7 @@
                     <div class="card-content">
                         <p class="center card-title" style="font-weight:bold">Add Location</p>
                         <div class="input-field">
-                            <input type="text" name="locationName" id="locationName">
+                            <input type="text" style="text-transform:uppercase" name="locationName" id="locationName">
                             <label for="locationName">Enter Location Name</label>
                         </div>
                         <div class="input-field center">

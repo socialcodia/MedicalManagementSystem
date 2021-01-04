@@ -17,7 +17,8 @@
     $('.sidenav').sidenav();
     $('select').formSelect();
     changePageName();
-    if (endPathname=='addproduct') 
+    console.log(endPathname);
+    if (endPathname=='addproduct' || endPathname=='editproduct.php') 
     {
       getBrands();
       getSizes();
@@ -26,6 +27,12 @@
     }
   });
   
+function setSelectedValue(name)
+{
+  let selectBrand = document.getElementById('selectBrand');
+  $('select').formSelect();
+}
+
 function playSuccess()
 {
   let audio = new Audio('src/aud/success.ogg');
@@ -51,6 +58,11 @@ function getToken() {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function setPageName(pageName)
+{
+  pageName.innerHTML = pageName;
+}
+
 function changePageName()
 {
   let location = window.location.pathname;
@@ -61,39 +73,51 @@ function changePageName()
   {
     case 'dashboard':
       pageName.innerHTML = 'Dashboard';
+      document.title = 'Dashboard';
       break;
     case 'sell':
-    pageName.innerHTML = 'Sell Product';
+      pageName.innerHTML = 'Sell Product';
+      document.title = 'Sell Product';
     break;
     case 'products':
       pageName.innerHTML = 'All Products';
+      document.title = 'All Products';
       break;
     case 'addproduct':
       pageName.innerHTML = 'Add Product';
+      document.title = 'Add Product';
       break;
     case 'expiringproducts':
       pageName.innerHTML = 'Expiring Products';
+      document.title = 'Expiring Products';
       break;
     case 'productsnotice':
       pageName.innerHTML = 'Products Notice';
+      document.title = 'Products Notice';
       break;
     case 'expiredproducts':
       pageName.innerHTML = 'Expired Products';
+      document.title = 'Expired Products';
       break;
     case 'productsrecord':
       pageName.innerHTML = 'Products Record';
+      document.title = 'Products Record';
       break;
     case 'addproductsinfo':
     pageName.innerHTML = 'Add Products Information';
+      document.title = 'Add Products Information';
     break;
     case 'salestoday':
       pageName.innerHTML = 'Todays Sale';
+      document.title = 'Todays Sale';
       break;
     case 'salesall':
       pageName.innerHTML = 'All Sales';
+      document.title = 'All Sales';
       break;
     default:
       pageName.innerHTML = 'Azmi Unani Store';
+      document.title = 'Azmi Unani Store';
       break;
     
   }

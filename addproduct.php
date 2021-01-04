@@ -46,7 +46,7 @@
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">store</i>
-                            <input type="text" name="productName" id="productName">
+                            <input type="text" name="productName" id="productName" style="text-transform:uppercase">
                             <label for="productName">Enter Product Name</label>
                         </div>
                         <div class="row">

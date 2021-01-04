@@ -61,7 +61,7 @@ tr.highlighted td {
         <div id="modal1" class="modal modal-fixed-footer">
 		      <div class="modal-content">
   		    	<div class="input-field">
-                <input type="text" autofocus name="productName" id="productName" placeholder="" onkeyup="filterProduct()" autofocus="off">
+                <input type="text" autofocus name="productName" id="productName" autocomplete="off" placeholder="" onkeyup="filterProduct()" onblur="this.focus()">
                 <label for="productName">Enter Product Name</label>
             </div>
   		    	<div id="results" class="scrollingdatagrid">	
