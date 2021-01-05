@@ -61,7 +61,7 @@ tr.highlighted td {
         <div id="modal1" class="modal modal-fixed-footer">
 		      <div class="modal-content">
   		    	<div class="input-field">
-                <input type="text" autofocus name="productName" id="productName" autocomplete="off" placeholder="" onkeyup="filterProduct()" onblur="this.focus()">
+                <input type="text" name="productName" id="productName" autocomplete="off" placeholder="" onkeyup="filterProduct()">
                 <label for="productName">Enter Product Name</label>
             </div>
   		    	<div id="results" class="scrollingdatagrid">	
@@ -85,20 +85,23 @@ tr.highlighted td {
                             $count = 1;
                               foreach ($products as $product)
                               {
-                                echo "<tr>";
-                                echo "<td>$count</td>";
-                                echo "<td class='hide' id='$product->productId'>$product->productId</td>";
-                                echo "<td>$product->productCategory</td>";
-                                echo "<td style='font-weight:bold'>$product->productName</td>";
-                                echo "<td style='font-weight:bold'>$product->productSize</td>";
-                                echo "<td style='font-weight:bold'>$product->productPrice</td>";
-                                echo "<td style='font-weight:bold'>$product->productQuantity</td>";
-                                echo "<td>$product->productLocation</td>";
-                                echo "<td>$product->productBrand</td>";
-                                echo "<td>$product->productManufacture</td>";
-                                echo "<td>$product->productExpire</td>";
-                                $count++;
-                                echo "</tr>";
+                                if ($product->productQuantity>0)
+                                {
+                                  echo "<tr>";
+                                  echo "<td>$count</td>";
+                                  echo "<td class='hide' id='$product->productId'>$product->productId</td>";
+                                  echo "<td>$product->productCategory</td>";
+                                  echo "<td style='font-weight:bold'>$product->productName</td>";
+                                  echo "<td style='font-weight:bold'>$product->productSize</td>";
+                                  echo "<td style='font-weight:bold'>$product->productPrice</td>";
+                                  echo "<td style='font-weight:bold'>$product->productQuantity</td>";
+                                  echo "<td>$product->productLocation</td>";
+                                  echo "<td>$product->productBrand</td>";
+                                  echo "<td>$product->productManufacture</td>";
+                                  echo "<td>$product->productExpire</td>";
+                                  $count++;
+                                  echo "</tr>";
+                                }
                               }
                             ?>
     				    </tbody>

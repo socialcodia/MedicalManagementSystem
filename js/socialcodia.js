@@ -268,10 +268,9 @@ function openModalTextController()
               }
               case 13: {//down arrow
                    let o = highlightRow(true);
-                   console.log(trows[o].childNodes[1].id);
                    let pid = trows[o].childNodes[1].id;
-
-                   sellProduct(pid);
+                  if ($('#modal1').hasClass('open'))
+                    sellProduct(pid);
                    closeModal();
                    // $("td",trow).each(function(){
                    //  //access the value as
