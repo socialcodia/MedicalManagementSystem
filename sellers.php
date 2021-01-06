@@ -69,7 +69,7 @@
     ?>
 
     <div class="socialcodia center">
-          <h4>No Products Found</h4>
+          <h4>No Sellers Found</h4>
           <img class="verticalCenter socialcodia" src="src/img/empty_cart.svg">
     </div>
 
