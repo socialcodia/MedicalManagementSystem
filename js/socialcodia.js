@@ -26,6 +26,19 @@
       getLocations();
     }
   });
+
+  function previewSellerImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#sellerImage')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
   
 function setSelectedValue(name)
 {
@@ -114,6 +127,14 @@ function changePageName()
     case 'salesall':
       pageName.innerHTML = 'All Sales';
       document.title = 'All Sales';
+      break;
+    case 'addseller':
+      pageName.innerHTML = 'Add Seller';
+      document.title = 'Add Seller';
+      break;
+    case 'sellers':
+      pageName.innerHTML = 'All Sellers';
+      document.title = 'All Sellers';
       break;
     default:
       pageName.innerHTML = 'Azmi Unani Store';

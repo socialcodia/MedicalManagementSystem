@@ -20,7 +20,7 @@ class Api
         return $response;
     }
 
-    function doPostFeed($content,$file,$feedPrivacy)
+    function addSeller($sellerFirstName,$sellerLastName,$sellerEmail,$sellerContactNumber,$sellerContactNumber1,$sellerImage,$sellerAddress)
     {
         if (isset($_COOKIE['token'])) 
         {
@@ -28,30 +28,20 @@ class Api
         }
         $header[]= "Content-Type:multipart/form-data";
         $header[] = "token: $tokenCookie";
-        if (isset($file) && !empty($file['tmp_name']))
+        if (isset($sellerImage) && !empty($sellerImage['tmp_name']))
         {
-            if ($file['type']=="image/png" || $file['type']=="image/jpg" || $file['type']=="image/jpeg") 
+            if ($sellerImage['type']=="image/png" || $sellerImage['type']=="image/jpg" || $sellerImage['type']=="image/jpeg") 
             {
-                $file = $file['tmp_name'];
-                $file = new CURLFile($file,'image/png', 'filename.png');
-            }
-            else if ($file['type']=="video/mp4") 
-            {
-                $file = $file['tmp_name'];
-                $file = new CURLFile($file,'video/mp4', 'filename.mp4');
+                $sellerImage = $sellerImage['tmp_name'];
+                $sellerImage = new CURLFile($sellerImage,'image/png', 'filename.png');
             }
             else
-                $file = "";
+                $sellerImage = "";
         }
         else
-            $file = "";
-
-        if (!isset($feedPrivacy)) 
-        {
-            $feedPrivacy = 1;
-        }
-        $postField = array('file'=>$file,'content'=>$content,'feedPrivacy'=>$feedPrivacy);
-        $endPoint = 'feed/post';
+            $sellerImage = "";
+        $postField = array('sellerFirstName'=>$sellerFirstName,'sellerLastName'=>$sellerLastName,'sellerEmail'=>$sellerEmail,'sellerContactNumber'=>$sellerContactNumber,'sellerContactNumber1'=>$sellerContactNumber1,'sellerImage'=>$sellerImage,'sellerAddress'=>$sellerAddress);
+        $endPoint = 'add/seller';
         $url = API_URL.$endPoint;
         $ch = curl_init($url);
         curl_setopt($ch,CURLOPT_URL,$url);
@@ -62,7 +52,6 @@ class Api
         $response = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response);
-        // header("Refresh:0");
         return $response;
     }
 
@@ -134,6 +123,11 @@ class Api
     function getExpiringProductsCount()
     {
         return $this->getMethodApi("counts/products/expiring");
+    }
+
+    function getSellers()
+    {
+        return $this->getMethodApi("sellers");
     }
 
     function getMethodApi($endPoint)

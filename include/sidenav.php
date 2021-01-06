@@ -20,6 +20,8 @@
         <li><a href="expiredproducts"><i class="material-icons"><img src="src/icons/danger.png" width="25" alt=""></i> Expired Products</a></li>
         <li><a href="addproduct"><i class="material-icons"><img src="src/icons/add_product.png" width="25" alt=""></i> Add Product</a></li>
         <li><a href="addproductsinfo"><i class="material-icons"><img src="src/icons/info.png" width="25" alt=""></i> Add Products Info</a></li>
+        <li><a href="addseller"><i class="material-icons"><img src="src/icons/addseller.png" width="25" alt=""></i> Add Seller</a></li>
+        <li><a href="sellers"><i class="material-icons"><img src="src/icons/sellers.png" width="25" alt=""></i> All Sellers</a></li>
 <!--         <li><a href="addbrand"><i class="material-icons"><img src="src/icons/brand.png" width="25" alt=""></i> Add Brand</a></li>
         <li><a href="addsize"><i class="material-icons"><img src="src/icons/size.png" width="25" alt=""></i> Add Size</a></li>
         <li><a href="addcategory"><i class="material-icons"><img src="src/icons/category.png" width="25" alt=""></i> Add Category</a></li>

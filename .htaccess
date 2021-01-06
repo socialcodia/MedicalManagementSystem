@@ -13,5 +13,7 @@ RewriteRule ^productsnotice?$ productsnotice.php
 RewriteRule ^expiredproducts?$ expiredproducts.php
 RewriteRule ^expiringproducts?$ expiringproducts.php
 RewriteRule ^addproductsinfo?$ addproductsinfo.php
+RewriteRule ^addseller?$ addseller.php
+RewriteRule ^sellers?$ sellers.php
 RewriteRule ^productsrecord?$ productsrecord.php
 RewriteRule ^dashboard?$ dashboard.php

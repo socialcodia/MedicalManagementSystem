@@ -4,11 +4,11 @@
     require_once dirname(__FILE__).'/include/navbar.php';
 
     $api = new API;
-    $response = $api->getProducts();
+    $response = $api->getSellers();
 ?>
 <?php if(!$response->error) 
   {
-    $products = $response->products;
+    $sellers = $response->sellers;
   ?>
     <div class="socialcodia" style="margin-top: -30px">
         <div class="row">
@@ -27,34 +27,29 @@
                         <thead>
                           <tr>
                               <th>Sr No</th>
-                              <th>Category</th>
+                              <th>Image</th>
                               <th>Name</th>
-                              <th>Size</th>
-                              <th>Price</th>
-                              <th>Quantity</th>
-                              <th>Location</th>
-                              <th>Brand</th>
-                              <th>Manufacture</th>
-                              <th>Expire</th>
+                              <th>Email</th>
+                              <th>Mobile Number</th>
+                              <th>Address</th>
                           </tr>
                         </thead>
                         <tbody style="font-family: holo">
                           <tr>
                             <?php
                             $count = 1;
-                              foreach ($products as $product)
+                              foreach ($sellers as $seller)
                               {
+                                $image = $seller->sellerImage;
+                                if (!isset($image) && empty($image))
+                                  $image = 'src/img/user.png';
                                 echo "<tr>";
                                 echo "<td>$count</td>";
-                                echo "<td>$product->productCategory</td>";
-                                echo "<td class='blue-text darken-4'>$product->productName</td>";
-                                echo "<td style='font-weight:bold'>$product->productSize</td>";
-                                echo "<td class='blue-text darken-4'>$product->productPrice</td>";
-                                echo "<td>$product->productQuantity</td>";
-                                echo "<td>$product->productLocation</td>";
-                                echo "<td class='blue-text darken-4'>$product->productBrand</td>";
-                                echo "<td>$product->productManufacture</td>";
-                                echo "<td class='red-text'>$product->productExpire</td>";
+                                echo "<td><img src='$image' class='circle' style='width:50px; border:2px solid red'/></td>";
+                                echo "<td class='blue-text darken-4'>$seller->sellerFirstName $seller->sellerLastName</td>";
+                                echo "<td style='font-weight:bold'>$seller->sellerEmail</td>";
+                                echo "<td class='blue-text darken-4'>$seller->sellerContactNumber , $seller->sellerContactNumber1</td>";
+                                echo "<td>$seller->sellerAddress</td>";
                                 $count++;
                                 echo "</tr>";
                               }
