@@ -84,7 +84,6 @@
                                 <div class="input-field col l6">
                                     <select id="manYear">
                                         <option value="0" disabled selected>Year</option>
-                                        <option value='2023'>2023</option>
                                         <option value='2022'>2022</option>
                                         <option value='2021'>2021</option>
                                         <option value='2020'>2020</option>
@@ -94,8 +93,7 @@
                                         <option value='2016'>2016</option>
                                         <option value='2015'>2015</option>
                                         <option value='2014'>2014</option>
-                                        <option value='2014'>2013</option>
-                                        <option value='2014'>2012</option>
+                                        <option value='2013'>2013</option>
                                     </select>
                                     <label>Manufacture year</label>
                                 </div>
@@ -122,6 +120,8 @@
                                 <div class="input-field col l6">
                                     <select id="expYear">
                                         <option value="0" disabled selected>Year</option>
+                                        <option value='2024'>2024</option>
+                                        <option value='2023'>2023</option>
                                         <option value='2022'>2022</option>
                                         <option value='2021'>2021</option>
                                         <option value='2020'>2020</option>
@@ -130,9 +130,6 @@
                                         <option value='2017'>2017</option>
                                         <option value='2016'>2016</option>
                                         <option value='2015'>2015</option>
-                                        <option value='2014'>2014</option>
-                                        <option value='2014'>2013</option>
-                                        <option value='2014'>2012</option>
                                     </select>
                                     <label>Expired Year</label>
                                 </div>

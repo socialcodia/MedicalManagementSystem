@@ -13,15 +13,22 @@
 
     if(!$response->error)
     {
-        print_r($response);
         $product = $response->products;
-        $productName = $product->productName;
-        $productPrice = $product->productPrice;
-        $productQuantity = $product->productQuantity;
         $productId = $product->productId;
+        $productCategory = $product->productCategory;
         $productName = $product->productName;
-        $productName = $product->productName;
-        $productName = $product->productName;
+        $productSize = $product->productSize;
+        $productBrand = $product->productBrand;
+        $productPrice = $product->productPrice;
+        $productLocation = $product->productLocation;
+        $productQuantity = $product->productQuantity;
+        $productManufacture = $product->productManufacture;
+        $productExpire = $product->productExpire;
+
+        $manMonth = date('m',strtotime($productManufacture));
+        $manYear = date('Y',strtotime($productManufacture));
+        $expMonth = date('m',strtotime($productExpire));
+        $expYear = date('Y',strtotime($productExpire));
     }
     else
     {
@@ -33,6 +40,53 @@
         // $productName = '';
         // $productName = '';
     }
+
+    function getMonthName($monthNumber)
+    {
+        switch ($monthNumber) {
+            case '01':
+                return 'January';
+                break;
+            case '02':
+                return 'February';
+                break;
+            case '03':
+                return 'March';
+                break;
+            case '04':
+                return 'April';
+                break;
+            case '05':
+                return 'May';
+                break;
+            case '06':
+                return 'June';
+                break;
+            case '07':
+                return 'July';
+                break;
+            case '08':
+                return 'August';
+                break;
+            case '09':
+                return 'September';
+                break;
+            case '10':
+                return 'October';
+                break;
+            case '11':
+                return 'November';
+                break;
+            case '12':
+                return 'December';
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+
 ?>
 
     <div class="socialcodia">
@@ -79,6 +133,7 @@
                             <input type="text" name="productName" id="productName" value="<?php echo $productName; ?>">
                             <label for="productName">Enter Product Name</label>
                         </div>
+                        <input type="hidden" name="productId" id="productId" value="<?php echo $productId; ?>">
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">monetization_on</i>
@@ -95,7 +150,7 @@
                             <div class="col l6">
                                 <div class="input-field col l6">
                                     <select id="manMonth">
-                                        <option value="0" disabled selected>Month</option>
+                                        <option value="<?php echo $manMonth; ?>" selected><?php echo getMonthName($manMonth); ?></option>
                                         <option value='01'>January</option>
                                         <option value='02'>February</option>
                                         <option value='03'>March</option>
@@ -113,7 +168,7 @@
                                 </div>
                                 <div class="input-field col l6">
                                     <select id="manYear">
-                                        <option value="0" disabled selected>Year</option>
+                                        <option value="<?php echo $manYear; ?>" selected><?php echo $manYear; ?></option>
                                         <option value='2022'>2022</option>
                                         <option value='2021'>2021</option>
                                         <option value='2020'>2020</option>
@@ -123,16 +178,15 @@
                                         <option value='2016'>2016</option>
                                         <option value='2015'>2015</option>
                                         <option value='2014'>2014</option>
-                                        <option value='2014'>2013</option>
-                                        <option value='2014'>2012</option>
+                                        <option value='2013'>2013</option>
                                     </select>
                                     <label>Manufacture year</label>
                                 </div>
-                            </div>
+                            </div>  
                             <div class="col l6">
                                 <div class="input-field col l6">
                                     <select id="expMonth">
-                                        <option value="0" disabled selected>Month</option>
+                                        <option value="<?php echo $expMonth; ?>" selected><?php echo getMonthName($expMonth); ?></option>
                                         <option value='01'>January</option>
                                         <option value='02'>February</option>
                                         <option value='03'>March</option>
@@ -150,7 +204,9 @@
                                 </div>
                                 <div class="input-field col l6">
                                     <select id="expYear">
-                                        <option value="0" disabled selected>Year</option>
+                                        <option value="<?php echo $expYear; ?>" selected><?php echo $expYear; ?></option>
+                                        <option value='2024'>2024</option>
+                                        <option value='2023'>2023</option>
                                         <option value='2022'>2022</option>
                                         <option value='2021'>2021</option>
                                         <option value='2020'>2020</option>
@@ -159,16 +215,13 @@
                                         <option value='2017'>2017</option>
                                         <option value='2016'>2016</option>
                                         <option value='2015'>2015</option>
-                                        <option value='2014'>2014</option>
-                                        <option value='2014'>2013</option>
-                                        <option value='2014'>2012</option>
                                     </select>
                                     <label>Expired Year</label>
                                 </div>
                             </div>
                         </div>
                         <div class="input-field center">
-                            <button type="submit" class="btn blue btn-large" style="width: 50%" onclick="addProduct()" name="btnAddProduct" id="btnAddProduct">Update Product</button>
+                            <button type="submit" class="btn blue btn-large" style="width: 50%" onclick="alertUpdateProduct()" name="btnUpdateProduct" id="btnUpdateProduct">Update Product</button>
                         </div>
                     </div>
                 </div>
@@ -179,3 +232,56 @@
 
 <?php require_once dirname(__FILE__).'/include/sidenav.php'; ?>
 <?php require_once dirname(__FILE__).'/include/footer.php'; ?>
+
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        setTimeout(prepareCategory, 300);
+        function prepareCategory()
+        {
+            let productBrand = '<?php echo $productBrand; ?>';
+            let productCategory = '<?php echo $productCategory; ?>';
+            let productSize = '<?php echo $productSize; ?>';
+            let productLocation = '<?php echo $productLocation; ?>';
+            let selectBrand = document.getElementById('selectBrand');
+            let selectCategory = document.getElementById('selectCategory');
+            let selectSize = document.getElementById('selectSize');
+            let selectLocation = document.getElementById('selectLocation');
+            
+            setCategory(selectBrand,productBrand);
+            setCategory(selectCategory,productCategory);
+            setCategory(selectSize,productSize);
+            setCategory(selectLocation,productLocation);
+        }
+
+        function setCategory(socialcodia,mufazmi)
+        {
+            for (var i = 0; i < socialcodia.options.length; i++)
+            {
+                if (socialcodia.options[i].text == mufazmi)
+                {
+                    socialcodia.options.selectedIndex = i;
+                    console.log(socialcodia.options[i].text);
+                    $('select').formSelect();
+                }
+            }
+        }
+    });
+
+
+    // selectBrand.foreach(selectCategory)
+
+    // function setCategory(item,index)
+    // {
+    //     console.log(item);
+    // }
+</script>
+
+<!--         $productCategory = $product->productCategory;
+        $productName = $product->productName;
+        $productSize = $product->productSize;
+        $productBrand = $product->productBrand;
+        $productPrice = $product->productPrice;
+        $productQuantity = $product->productQuantity;
+        $productManufacture = $product->productManufacture;
+        $productExpire = $product->productExpire; -->

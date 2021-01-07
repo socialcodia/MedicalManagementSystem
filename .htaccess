@@ -16,4 +16,5 @@ RewriteRule ^addproductsinfo?$ addproductsinfo.php
 RewriteRule ^addseller?$ addseller.php
 RewriteRule ^sellers?$ sellers.php
 RewriteRule ^productsrecord?$ productsrecord.php
+RewriteRule ^editproduct?$ editproduct.php
 RewriteRule ^dashboard?$ dashboard.php

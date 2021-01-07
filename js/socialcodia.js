@@ -18,7 +18,7 @@
     $('select').formSelect();
     changePageName();
     console.log(endPathname);
-    if (endPathname=='addproduct' || endPathname=='editproduct.php') 
+    if (endPathname=='addproduct' || endPathname=='editproduct') 
     {
       getBrands();
       getSizes();
@@ -117,8 +117,12 @@ function changePageName()
       document.title = 'Products Record';
       break;
     case 'addproductsinfo':
-    pageName.innerHTML = 'Add Products Information';
+      pageName.innerHTML = 'Add Products Information';
       document.title = 'Add Products Information';
+    break;
+    case 'editproduct':
+      pageName.innerHTML = 'Edit Product';
+      document.title = 'Edit Product';
     break;
     case 'salestoday':
       pageName.innerHTML = 'Todays Sale';
@@ -347,6 +351,223 @@ function openModalTextController()
           }
         }
       }
+    }
+
+    function updateProduct()
+    {
+      let selectBrand = document.getElementById('selectBrand');
+      let selectCategory = document.getElementById('selectCategory');
+      let selectSize = document.getElementById('selectSize');
+      let manMonth = document.getElementById('manMonth');
+      let manYear = document.getElementById('manYear');
+      let expMonth = document.getElementById('expMonth');
+      let expYear = document.getElementById('expYear');
+      let productName = document.getElementById('productName');
+      let productPrice = document.getElementById('productPrice');
+      let productQuantity = document.getElementById('productQuantity');
+      let productId = document.getElementById('productId');
+      let btnUpdateProduct = document.getElementById('btnUpdateProduct');
+      if (productId.value<1)
+      {
+        console.log(productId.value);
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Please Refresh The Page"
+        });
+        return;
+      }
+      if (selectBrand.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Select Brand"
+        });
+        return;
+      }
+      if (selectCategory.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Select Category"
+        });
+        return;
+      }
+      if (selectSize.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Select Size"
+        });
+        return;
+      }
+      if (selectLocation.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Select location"
+        });
+        return;
+      }
+      if (productName.value=='')
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Enter Product"
+        });
+        return;
+      }
+      if (productName.value.length<4)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "product Name too short"
+        });
+        return;
+      }
+      if (productPrice.value=='')
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Enter Price"
+        });
+        return;
+      }
+      if (productPrice.value<10)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "price too short"
+        });
+        return;
+      }
+      if (productQuantity.value=='')
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Enter Quantity"
+        });
+        return;
+      }
+      if (productQuantity.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "product Quantity too short"
+        });
+        return;
+      }
+      if (manMonth.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Select Manufacture Month"
+        });
+        return;
+      }
+      if (manYear.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Select Manufacture Year"
+        });
+        return;
+      }
+      if (expMonth.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Select Expire Month"
+        });
+        return;
+      }
+      if (expYear.value<1)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Select Expire Year"
+        });
+        return;
+      }
+      let productManufactureDate = manYear.value+'-'+manMonth.value+'-01';
+      let productExpireDate = expYear.value+'-'+expMonth.value+'-01';
+      let a = new Date(productManufactureDate);
+      let b = new Date(productExpireDate);
+      if (a>b)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "The Manufacture date could not be greater than expire date"
+        });
+        return;
+      }
+      btnUpdateProduct.classList.add('disabled');
+      
+      $.ajax({
+        headers:{  
+           'token':token
+        },
+        type:"post",
+        url:BASE_URL+"update/product",
+        data: 
+        {  
+           'productId' : productId.value,
+           'productName' : productName.value,
+           'productBrand':selectBrand.value,
+           'productCategory':selectCategory.value,
+           'productSize':selectSize.value,
+           'productLocation':selectLocation.value,
+           'productPrice':productPrice.value,
+           'productQuantity':productQuantity.value,
+           'productManufactureDate':productManufactureDate,
+           'productExpireDate':productExpireDate
+        },
+        success:function(response)
+        {
+          console.log(response);
+          if (!response.error)
+          {
+            playSuccess();
+            console.log(response);
+            Toast.fire({
+                  icon: 'success',
+                  title: response.message
+              });
+            btnUpdateProduct.classList.remove('disabled');
+          }
+          else
+          {
+            playWarning();
+            productName.value = '';
+            productPrice.value = '';
+            productQuantity.value = '';
+            // manMonth.selectedIndex = 0;
+            // manYear.selectedIndex = 0;
+            // expMonth.selectedIndex = 0;
+            // expYear.selectedIndex = 0;
+            Toast.fire({
+              icon: 'error',
+              title: response.message
+            });
+            btnUpdateProduct.classList.remove('disabled');
+          }
+        }
+      });
     }
 
     function addProduct()
@@ -612,6 +833,22 @@ function openModalTextController()
             deleteSoldProduct(value);
           }
           });
+    }
+
+    function alertUpdateProduct()
+    {
+        Swal.fire({
+        title: 'Are you sure?',
+        text: 'Are you sure want to update this product.',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Update Product'
+        }).then((result) => {
+        if (result.isConfirmed) 
+          updateProduct();
+      });
     }
 
     function addBrand()

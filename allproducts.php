@@ -36,6 +36,7 @@
                               <th>Brand</th>
                               <th>Manufacture</th>
                               <th>Expire</th>
+                              <th>Action</th>
                           </tr>
                         </thead>
                         <tbody style="font-family: holo">
@@ -55,6 +56,7 @@
                                 echo "<td class='blue-text darken-4'>$product->productBrand</td>";
                                 echo "<td>$product->productManufacture</td>";
                                 echo "<td class='red-text'>$product->productExpire</td>";
+                                echo '<td><a href="editproduct?pid='.$product->productId.'" style="border: 1px solid white;border-radius: 50%;" class="btn red"><i class="material-icons white-text">edit</i></a></td>';
                                 $count++;
                                 echo "</tr>";
                               }
