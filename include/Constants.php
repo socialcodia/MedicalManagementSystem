@@ -1,6 +1,5 @@
 <?php
 define('API_URL', 'http://socialcodia.net/azmiunanistore/public/');		//Don't Forgot to put slash at the end of url
-// define('API_URL', 'http://111.111.111.111/SocialApiFriendsSystemVideoThumb/public/');		//Don't Forgot to put slash at the end of url
 define('WEBSITE_NAME', 'Social Ui');
 
 define('ERROR', 'error');

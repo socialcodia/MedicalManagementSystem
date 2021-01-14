@@ -41,7 +41,7 @@ class Api
         else
             $sellerImage = "";
         $postField = array('sellerFirstName'=>$sellerFirstName,'sellerLastName'=>$sellerLastName,'sellerEmail'=>$sellerEmail,'sellerContactNumber'=>$sellerContactNumber,'sellerContactNumber1'=>$sellerContactNumber1,'sellerImage'=>$sellerImage,'sellerAddress'=>$sellerAddress);
-        $endPoint = 'add/seller';
+        $endPoint = 'seller/add';
         $url = API_URL.$endPoint;
         $ch = curl_init($url);
         curl_setopt($ch,CURLOPT_URL,$url);
@@ -62,17 +62,17 @@ class Api
 
     function getProductById($productId)
     {
-        return $this->getMethodApi("get/product/".$productId);
+        return $this->getMethodApi("product/".$productId);
     }
 
     function getProducts()
     {
-        return $this->getMethodApi("get/products");
+        return $this->getMethodApi("products");
     }
 
     function getProductsRecord()
     {
-        return $this->getMethodApi("get/products/records");
+        return $this->getMethodApi("products/records");
     }
 
     function getNoticeProducts()

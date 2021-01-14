@@ -27,14 +27,37 @@ tr.highlighted td {
         <div class="row">
         	<div class="card z-depth-0" style="margin: 10px">
 		        <div class="card-content">
-		            <div class="input-field">
-		                <input type="text" autofocus id="inputOpenModal" onkeyup="openModalTextController()" placeholder="">
-		                <label for="productName">Enter Product Name</label>
-		            </div>
+                <div class="row" style="margin-bottom: -30px;">
+                  <div class="input-field col s6 m10 l10">
+                    <select id="selectSeller">
+                      <option value="0" disabled selected>Select Seller</option>
+                    </select>
+                    <label>Seller</label>
+                  </div>
+                  <div class="input-field col s6 m2 l2">
+                      <button style="border: 2px solid white; border-radius: 20px; width: 100%; height: 50px;" onclick="setSeller()" class="btn red" id="btnSetSeller">Set Seller</button>
+                  </div>
+                  <div class="col s4 m3 l3 center">
+                    <img src="src/img/user.png" id="sellerProfileImage" class="responive-img circle" style="width: 100px; border: 2px solid blue">
+                  </div>
+
+                  <div class="col s8 m9 l19">
+                    <h6 style="font-weight: bold">Name : <span id="viewSellerName"></span></h6>
+                    <h6 style="font-weight: bold">Contact : <span id="viewSellerContact"></span></h6>
+                    <h6 style="font-weight: bold">Address : <span id="viewSellerAddress"></span></h6>
+                  </div>
+                </div>
+                
+                <br>
+		            
 		        </div>
 		      </div>
   		    <div class="card z-depth-0 blue lighten-3" style="margin: 10px; min-height: 490px;">
   	        <div class="card-content">
+              <div class="input-field">
+                    <input type="text" disabled="disabled" onclick="openModalAlert()" autofocus id="inputOpenModal" onkeyup="openModalTextController()" placeholder="">
+                    <label for="productName">Enter Product Name</label>
+                </div>
   	            <table id="productTable" class="highlight responsive-table ">
                   <thead>
                     <tr>
@@ -51,6 +74,7 @@ tr.highlighted td {
                     </tr>
                   </thead>
                   <tbody id="SellRecordTableBody" style="font-weight: bold;">
+                    <input class="hide" type="hidden" id="inputInvoiceNumber">
   				        </tbody>
                 </table>
   	        </div>
@@ -58,11 +82,11 @@ tr.highlighted td {
           <div class="card z-depth-0 blue lighten-3" style="margin: 10px;">
             <div class="card-content">
               <div class="row">
-                <div class="col s12 m6  l6 left">
+                <div class="col s12 m6  l6">
                   <h3 style="display: inline;">Total Price: </h3> <h3 style="font-weight: bold; display: inline;" id="htmlTotalPrice"></h3>
                 </div>
-                <div class="col s12 m6  l6 right">
-                  <h3 style="display: inline;">Sell Price: </h3> <h3 style="font-weight: bold; display: inline;" id="htmlDiscountPrice"></h3>
+                <div class="col s12 m6  l6 left">
+                  <h3 style="display: inline;">Total Price: </h3> <h3 style="font-weight: bold; display: inline;" id="htmlDiscountPrice"></h3>
                 </div>
               </div>
             </div>
@@ -139,108 +163,4 @@ tr.highlighted td {
 
 
 <?php require_once dirname(__FILE__).'/include/sidenav.php'; ?>
-
-<!-- <script type="text/javascript"> --
->    // let BASE_URL = 'http://socialcodia.net/azmiunanistore/public/';
-
-	function closeModal(){
-		$('#modal1').modal('close');
-	}
-
-	function openModal(){
-		$('#modal1').modal('open');
-	}
-
-	$(document).ready(function(){
-    	$('.modal').modal();
-  	});
-
-  	function jsonToArray()
-  	{
-  		// var obj = JSON.parse(JS_Obj); 
-				// var res = []; 
-				// console.log(JS_Obj)
-				// for(var i in obj) 
-				// 	res.push(obj[i]); 
-				// console.log(res);
-  	}
-
-	$(document).ready(function ()
-	{
-		$.ajax({
-        headers:{  
-           'token':"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2NpYWxjb2RpYS5jb20iLCJpYXQiOjE2MDgwNDE1NzUsInVzZXJfaWQiOjE5NH0.kitbeuKGwFAoXjRAogLQnZ6WsJkeLtvHQjPNEKZeEqA"
-        },
-        type:"get",
-        url:"http://socialcodia.net/azmiunanistore/public/get/products",
-        success:function(response)
-        {
-          console.log(response);
-          if(!response.error)
-          {
-            products = response.products;
-            var obj = JSON.parse(products); 
-
-            for(let d=1; d<products.length; d++)
-            {
-            	var obj = JSON.parse(products[d]); 
-				var res = []; 
-				console.log(JS_Obj)
-				for(var i in obj) 
-					res.push(obj[i]); 
-				console.log(res);
-            }
-          }
-          else
-          {
-            Toast.fire({
-              icon: 'error',
-              title: response.message
-            });
-          }
-        }
-      });
-    });
-
-	$(document).ready(function ()
-	{
-    	var table = $('#example').DataTable({
-        ajax: 'https://gyrocode.github.io/files/jquery-datatables/arrays.json',
-        "paging":   false,
-        "ordering": false,
-        "info":     false,
-        keys: {
-           keys: [ 13 /* ENTER */, 38 /* UP */, 40 /* DOWN */ ]
-        }
-    });
-    
-    // Handle event when cell gains focus
-    $('#example').on('key-focus.dt', function(e, datatable, cell){
-        // Select highlighted row
-        $(table.row(cell.index().row).node()).addClass('selected');
-    });
-
-    // Handle event when cell looses focus
-    $('#example').on('key-blur.dt', function(e, datatable, cell){
-        // Deselect highlighted row
-        $(table.row(cell.index().row).node()).removeClass('selected');
-    });
-        
-    // Handle key event that hasn't been handled by KeyTable
-    $('#example').on('key.dt', function(e, datatable, key, cell, originalEvent){
-        // If ENTER key is pressed
-        if(key === 13){
-            // Get highlighted row data
-            var data = table.row(cell.index().row).data();
-            console.log(data);
-            // FOR DEMONSTRATION ONLY
-            $("#example-console").html(data.join(', '));
-            closeModal();
-        }
-    });       
-});
-
-
-</script> -->
-
 <?php require_once dirname(__FILE__).'/include/footer.php'; ?>

@@ -76,82 +76,82 @@ function getToken() {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-  function setPageName(pageName)
-  {
-    pageName.innerHTML = pageName;
-  }
+function setPageName(pageName)
+{
+  pageName.innerHTML = pageName;
+}
 
-  function changePageName()
-  {
-    let location = window.location.pathname;
-    let pathname = location.substring(location.lastIndexOf('/') + 1);
-    let pageName = document.getElementById('pageName');
+function changePageName()
+{
+  let location = window.location.pathname;
+  let pathname = location.substring(location.lastIndexOf('/') + 1);
+  let pageName = document.getElementById('pageName');
 
-    switch(pathname)
-    {
-      case 'dashboard':
-        pageName.innerHTML = 'Dashboard';
-        document.title = 'Dashboard';
-        break;
-      case 'sell':
-        pageName.innerHTML = 'Sell Product';
-        document.title = 'Sell Product';
+  switch(pathname)
+  {
+    case 'dashboard':
+      pageName.innerHTML = 'Dashboard';
+      document.title = 'Dashboard';
       break;
-      case 'products':
-        pageName.innerHTML = 'All Products';
-        document.title = 'All Products';
-        break;
-      case 'addproduct':
-        pageName.innerHTML = 'Add Product';
-        document.title = 'Add Product';
-        break;
-      case 'expiringproducts':
-        pageName.innerHTML = 'Expiring Products';
-        document.title = 'Expiring Products';
-        break;
-      case 'productsnotice':
-        pageName.innerHTML = 'Products Notice';
-        document.title = 'Products Notice';
-        break;
-      case 'expiredproducts':
-        pageName.innerHTML = 'Expired Products';
-        document.title = 'Expired Products';
-        break;
-      case 'productsrecord':
-        pageName.innerHTML = 'Products Record';
-        document.title = 'Products Record';
-        break;
-      case 'addproductsinfo':
-        pageName.innerHTML = 'Add Products Information';
-        document.title = 'Add Products Information';
+    case 'sell':
+      pageName.innerHTML = 'Sell Product';
+      document.title = 'Sell Product';
+    break;
+    case 'products':
+      pageName.innerHTML = 'All Products';
+      document.title = 'All Products';
       break;
-      case 'editproduct':
-        pageName.innerHTML = 'Edit Product';
-        document.title = 'Edit Product';
+    case 'addproduct':
+      pageName.innerHTML = 'Add Product';
+      document.title = 'Add Product';
       break;
-      case 'salestoday':
-        pageName.innerHTML = 'Todays Sale';
-        document.title = 'Todays Sale';
-        break;
-      case 'salesall':
-        pageName.innerHTML = 'All Sales';
-        document.title = 'All Sales';
-        break;
-      case 'addseller':
-        pageName.innerHTML = 'Add Seller';
-        document.title = 'Add Seller';
-        break;
-      case 'sellers':
-        pageName.innerHTML = 'All Sellers';
-        document.title = 'All Sellers';
-        break;
-      default:
-        pageName.innerHTML = 'Azmi Unani Store';
-        document.title = 'Azmi Unani Store';
-        break;
-      
-    }
+    case 'expiringproducts':
+      pageName.innerHTML = 'Expiring Products';
+      document.title = 'Expiring Products';
+      break;
+    case 'productsnotice':
+      pageName.innerHTML = 'Products Notice';
+      document.title = 'Products Notice';
+      break;
+    case 'expiredproducts':
+      pageName.innerHTML = 'Expired Products';
+      document.title = 'Expired Products';
+      break;
+    case 'productsrecord':
+      pageName.innerHTML = 'Products Record';
+      document.title = 'Products Record';
+      break;
+    case 'addproductsinfo':
+      pageName.innerHTML = 'Add Products Information';
+      document.title = 'Add Products Information';
+    break;
+    case 'editproduct':
+      pageName.innerHTML = 'Edit Product';
+      document.title = 'Edit Product';
+    break;
+    case 'salestoday':
+      pageName.innerHTML = 'Todays Sale';
+      document.title = 'Todays Sale';
+      break;
+    case 'salesall':
+      pageName.innerHTML = 'All Sales';
+      document.title = 'All Sales';
+      break;
+    case 'addseller':
+      pageName.innerHTML = 'Add Seller';
+      document.title = 'Add Seller';
+      break;
+    case 'sellers':
+      pageName.innerHTML = 'All Sellers';
+      document.title = 'All Sellers';
+      break;
+    default:
+      pageName.innerHTML = 'Azmi Unani Store';
+      document.title = 'Azmi Unani Store';
+      break;
+    
   }
+}
 
   function openModalTextController()
   {
@@ -167,8 +167,8 @@ function getToken() {
   let productTable = document.getElementById('productTable');
   let tableBody = document.getElementById('tableBody');
 
-  if ((endPathname=='sell') || (endPathname=='selltoseller.php'))
-    {
+  if ((endPathname=='sell') || (endPathname='selltoseller.php'))
+  {
       (function() {
     var trows = document.getElementById('mstrTable').rows, t = trows.length, trow, nextrow,
     // rownum = document.getElementById('rownum'),
@@ -252,11 +252,10 @@ function getToken() {
                    let pid = trows[o].childNodes[1].id;
                   if ($('#modal1').hasClass('open'))
                   {
-                    let inputInvoiceNumber = document.getElementById('inputInvoiceNumber');
                     if (endPathname=='sell')
                       sellProduct(pid);
                     else if (endPathname=='selltoseller.php')
-                      sellToSeller(pid,inputInvoiceNumber.value);
+                      sellToSeller(pid);
                   }
                    closeModal();
                    // $("td",trow).each(function(){
@@ -780,48 +779,6 @@ function getToken() {
       });
     }
 
-    function deleteSellerSoldProduct(value)
-    {
-      let btnDelete = document.getElementById('btnDelete'+value);
-      let row = document.getElementById('rowId'+value);
-      btnDelete.classList.add('disabled');
-      $.ajax({
-        headers:{  
-           'token':token
-        },
-        type:"post",
-        url:BASE_URL+"seller/product/sell/delete",
-        data: 
-        {  
-           'sellId' : value
-        },
-        success:function(response)
-        {
-          console.log(response);
-          if (!response.error)
-          {
-            playSuccess();
-            row.remove();
-            Toast.fire({
-                  icon: 'success',
-                  title: response.message
-              });
-            btnDelete.classList.remove('disabled');
-            sumColumn();
-          }
-          else
-          {
-            playWarning();
-            Toast.fire({
-              icon: 'error',
-              title: response.message
-            });
-            btnDelete.classList.remove('disabled');
-          }
-        }
-      });
-    }
-
     function alertDeleteSaleProduct(value)
     {
           Swal.fire({
@@ -836,24 +793,6 @@ function getToken() {
           if (result.isConfirmed) 
           {
             deleteSoldProduct(value);
-          }
-          });
-    }
-
-    function alertDeleteSellerSaleProduct(value)
-    {
-          Swal.fire({
-          title: 'Are you sure?',
-          text: 'Are you sure want to delete this sale entry',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#d33',
-          cancelButtonColor: '#3085d6',
-          confirmButtonText: 'Delete Entry'
-          }).then((result) => {
-          if (result.isConfirmed) 
-          {
-            deleteSellerSoldProduct(value);
           }
           });
     }
@@ -1003,7 +942,7 @@ function getToken() {
       });
     }
 
-    function sellToSeller(value,invoiceNumber)
+    function sellToSeller(value)
     {
       // let brandName = document.getElementById('brandName');
       let SellRecordTableBody = document.getElementById('SellRecordTableBody');
@@ -1023,11 +962,10 @@ function getToken() {
            'token':token
         },
         type:"post",
-        url:BASE_URL+"seller/product/sell",
+        url:BASE_URL+"product/sell",
         data: 
         {  
-           'productId' : value,
-           'invoiceNumber':invoiceNumber
+           'productId' : value
         },
         success:function(response)
         {
@@ -1049,7 +987,7 @@ function getToken() {
             let tdPSellDiscount = '<td><input class="center" type="number" onkeyup="discountInputEvent(this.value)" style="width:60px;" id="productDiscount'+product.saleId+'" value="0"></td>';
             let tdPSellPrice = '<td><input type="number" onkeyup="priceEvent(this.value)" style="width:60px;" id="productSellPrice'+product.saleId+'" value="'+product.productPrice+'"></td>';
             let tdPBrand = '<td>'+product.productBrand+'</td>';
-            let tdPAction = '<td><button style="border: 1px solid white;border-radius: 50%; display:none" onclick="updateSellerSellRecord(this.value)" value="'+product.saleId+'" id="btnUpdate'+product.saleId+'" class="btn blue"><i class="material-icons white-text large">check_circle</i></button><button id="btnDelete'+product.saleId+'" value="'+product.saleId+'" onclick="alertDeleteSellerSaleProduct(this.value)" style="border: 1px solid white;border-radius: 50%;" class="btn red"><i class="material-icons white-text">delete_forever</i></button></td>';
+            let tdPAction = '<td><button style="border: 1px solid white;border-radius: 50%; display:none" onclick="updateSellRecord(this.value)" value="'+product.saleId+'" id="btnUpdate'+product.saleId+'" class="btn blue"><i class="material-icons white-text large">check_circle</i></button><button id="btnDelete'+product.saleId+'" value="'+product.saleId+'" onclick="alertDeleteSaleProduct(this.value)" style="border: 1px solid white;border-radius: 50%;" class="btn red"><i class="material-icons white-text">delete_forever</i></button></td>';
             tr.innerHTML=tdSr+tdSId+tdPName+tdPSize+tdPPrice+tdPQuantity+tdAPQuantity+tdPTPrice+tdPSellDiscount+tdPSellPrice+tdPBrand+tdPAction;
             SellRecordTableBody.appendChild(tr);
             // Toast.fire({
@@ -1143,78 +1081,6 @@ function getToken() {
       });
     }
 
-    function updateSellerSellRecord(value)
-    {
-      let btnUpdate =  document.getElementById('btnUpdate'+value);
-      let productQuantity =  document.getElementById('productQuantity'+value);
-      let productAllQuantity = document.getElementById('productAllQuantity'+value);
-      let productSellPrice =  document.getElementById('productSellPrice'+value);
-      let productDiscount =  document.getElementById('productDiscount'+value);
-      let productName = document.getElementById('productName'+value);
-      let quantity = productQuantity.value;
-      let price = productSellPrice.value;
-      let discount = productDiscount.value;
-      if (quantity<1)
-      {
-        playWarning();
-        Toast.fire({
-            icon: 'error',
-            title: 'Product Quantity Is Low'
-        });
-        return;
-      }
-      btnUpdate.classList.add('disabled');
-      $.ajax({
-        headers:{  
-           'token':token
-        },
-        type:"post",
-        url:BASE_URL+"seller/product/sell/update",
-        data:{
-          'saleId':value,
-          'productQuantity':quantity,
-          'productSellPrice':price,
-          'sellDiscount':discount,
-        },
-        success:function(response)
-        {
-          btnUpdate.classList.remove('disabled');
-          console.log(response);
-          if (!response.error)
-          {
-            btnUpdate.style.display = 'none';
-            playSuccess(); 
-            Toast.fire({
-              icon: 'success',
-              title: response.message
-            });
-          }
-          else
-          {
-            playError();
-            if (new String(response.message).valueOf() == new String("Product Not Available").valueOf())
-            {
-              let productAC = parseInt(productAllQuantity.innerText)+1;
-                let text = "<b>The Available Quantity Of <span class='blue-text'>"+productName.innerText+"</span> Is <h4 style='font-weight:bold; color:red'>"+productAC+"</h4>Please Decrease The Quantity.</b>";
-                Swal.fire({
-                icon: 'warning',
-                title: response.message,
-                html: text
-              });
-            }
-            else
-            {
-              playWarning();
-              Toast.fire({
-                icon: 'error',
-                title: response.message
-              });
-            }
-          }
-        }
-      });
-    }
-
     //calling this function on change quantity
     function changePrice(quantity)
     {
@@ -1264,7 +1130,7 @@ function getToken() {
       let inputProductDiscount = document.getElementById('productDiscount'+sellId);
       let btnUpdateProduct = document.getElementById('btnUpdate'+sellId);
       console.log(inputProductSellPrice.value);
-      if (endPathname=='selltoseller.php')
+      if (endPathname='selltoseller.php')
           inputProductDiscount.value = percentage(inputProductSellPrice.value,inputProductTotalPrice.innerText);
       btnUpdateProduct.style.display = 'block';
       sumColumn();
@@ -1321,72 +1187,11 @@ function getToken() {
       let selectSeller = document.getElementById('selectSeller');
       let viewSellerName = document.getElementById('viewSellerName');
       let viewSellerAddress = document.getElementById('viewSellerAddress');
-      let viewSellerContact = document.getElementById('viewSellerContact');
-      let sellerProfileImage = document.getElementById('sellerProfileImage');
-      let inputOpenModal = document.getElementById('inputOpenModal');
-      if (selectSeller.value>0)
-      {
-        let imageUrl = selectSeller.options[selectSeller.selectedIndex].getAttribute('data-icon');
-        let sellerAddress = selectSeller.options[selectSeller.selectedIndex].getAttribute('data-address');
-        let sellerContactNumber = selectSeller.options[selectSeller.selectedIndex].getAttribute('data-contact');
-        viewSellerName.innerHTML = selectSeller.options[selectSeller.selectedIndex].text;
-        sellerProfileImage.src = imageUrl;
-        viewSellerAddress.innerHTML = sellerAddress;
-        viewSellerContact.innerHTML = sellerContactNumber;
-        selectSeller.setAttribute('disabled','');
-        $('select').formSelect();
-        addInvoice(selectSeller.value);
-        inputOpenModal.removeAttribute('disabled');
-      }
-      else
-        Swal.fire('Please Select A Seller.')
+      console.log(selectSeller.value);
+      viewSellerName.innerHTML = selectSeller.options[selectSeller.selectedIndex].text;
+      selectSeller.setAttribute('disabled','');
+      $('select').formSelect();
     }
-
-    function openModalAlert()
-    {
-      let inputOpenModal = document.getElementById('inputOpenModal');
-      if (inputOpenModal.getAttribute('disabled')!=null)
-      {
-        console.log('alert can show');
-      }
-      else
-      {
-        console.log('don need tosh');
-      }
-    }
-
-
-    function addInvoice(sellerId)
-    {
-      let inputInvoiceNumber = document.getElementById('inputInvoiceNumber');
-      $.ajax({
-        headers:{  
-           'token':token
-        },
-        type:"post",
-        url:BASE_URL+"/invoice/add",
-        data:{
-          'sellerId':sellerId
-        },
-        success:function(response)
-        {
-          console.log(response);
-          if (!response.error)
-          {
-              inputInvoiceNumber.value = response.invoice.invoiceNumber;
-          }
-          else
-          {
-            playWarning();
-            Toast.fire({
-              icon: 'error',
-              title: response.message
-            });
-          }
-        }
-      });
-    }
-
 
     function getSellers()
     {
@@ -1407,7 +1212,7 @@ function getToken() {
             function setCategory(item, index) {
               if (item.sellerImage!=null)
                 sellerImage = item.sellerImage;
-              $('#selectSeller').formSelect().append($('<option value="'+item.sellerId+'" data-icon="'+sellerImage+'" data-address="'+item.sellerAddress+'" data-contact="'+item.sellerContactNumber+'">'+item.sellerFirstName+' '+item.sellerLastName+'</option>'));
+              $('#selectSeller').formSelect().append($('<option value="'+item.sellerId+'" data-icon="'+sellerImage+'">'+item.sellerFirstName+' '+item.sellerLastName+'</option>'));
               $('select').formSelect();
             }
           }
