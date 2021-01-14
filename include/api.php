@@ -130,6 +130,11 @@ class Api
         return $this->getMethodApi("sellers");
     }
 
+    function getInvoices()
+    {
+        return $this->getMethodApi("invoices");
+    }
+
     function getMethodApi($endPoint)
     {
         $domain = API_URL;
