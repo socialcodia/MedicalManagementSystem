@@ -61,7 +61,10 @@
                                 echo "<td>$invoice->invoiceAmount</td>";
                                 echo "<td>$invoicePaidAmount</td>";
                                 echo "<td class='blue-text darken-4'>$invoice->invoiceDate</td>";
-                                // echo '<td><a href="editproduct?pid='.$invoice->productId.'" style="border: 1px solid white;border-radius: 50%;" class="btn red"><i class="material-icons white-text">edit</i></a></td>';
+                                echo '<td><a href="invoice.php?inum='.$invoice->invoiceNumber.'" style="border: 1px solid white;border-radius: 50%;" class="btn blue" data-position="top" data-tooltip="View Invoice"><i class="material-icons white-text">remove_red_eye
+                                    </i></a>';
+                                echo '<a href="payment.php?inum='.$invoice->invoiceNumber.'" style="border: 1px solid white;border-radius: 50%;" class="btn red" data-position="top" data-tooltip="Pay Amount"><i class="material-icons white-text">attach_money
+                                </i></a></td>';
                                 $count++;
                                 echo "</tr>";
                               }
@@ -81,7 +84,7 @@
     ?>
 
     <div class="socialcodia center">
-          <h4>No Products Found</h4>
+          <h4>No Invoices Found</h4>
           <img class="verticalCenter socialcodia" src="src/img/empty_cart.svg">
     </div>
 

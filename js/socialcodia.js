@@ -26,7 +26,7 @@
       getCategories();
       getLocations();
     }
-    else if (endPathname == 'selltoseller.php')
+    else if (endPathname == 'selltoseller')
     {
       getSellers();
     }
@@ -167,7 +167,7 @@ function getToken() {
   let productTable = document.getElementById('productTable');
   let tableBody = document.getElementById('tableBody');
 
-  if ((endPathname=='sell') || (endPathname=='selltoseller.php'))
+  if ((endPathname=='sell') || (endPathname=='selltoseller'))
     {
       (function() {
     var trows = document.getElementById('mstrTable').rows, t = trows.length, trow, nextrow,
@@ -255,7 +255,7 @@ function getToken() {
                     let inputInvoiceNumber = document.getElementById('inputInvoiceNumber');
                     if (endPathname=='sell')
                       sellProduct(pid);
-                    else if (endPathname=='selltoseller.php')
+                    else if (endPathname=='selltoseller')
                       sellToSeller(pid,inputInvoiceNumber.value);
                   }
                    closeModal();
@@ -276,7 +276,7 @@ function getToken() {
   }/* end function */)();//execute function and end script
     }
 
-    let BASE_URL = 'http://socialcodia.net/azmiunanistore/public/';
+    let BASE_URL = 'http://socialcodia.net/azmiunanistorepdf/public/';
 
     const Toast = Swal.mixin({
         toast: true,
@@ -733,6 +733,98 @@ function getToken() {
               title: response.message
             });
             btnAddProduct.classList.remove('disabled');
+          }
+        }
+      });
+    }
+
+    function alertMakePayment()
+    {
+      let paymentAmount = document.getElementById('paymentAmount');
+      let sellerName = document.getElementById('sellerName');
+      let invoiceNumber = document.getElementById('invoiceNumber');
+      paymentAmount = paymentAmount.value;
+      invoiceNumber = invoiceNumber.innerHTML;
+      sellerName = sellerName.innerHTML;
+      if (paymentAmount<=0.99999999)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Enter Amount"
+        });
+        return;
+      }
+      let text = "<b>The seller <span class='blue-text'>"+sellerName+"</span> is paying you <h4 style='font-weight:bold; color:red'>"+paymentAmount+' Rupees'+"</h4> For Invoice <span class='blue-text'>"+invoiceNumber+"</span></b>";
+          Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure?',
+            showCancelButton: true,
+            confirmButtonText: `Accept Payment`,
+            denyButtonText: `Cancel Payment`,
+            html: text
+          }).then((result) => {
+          if (result.isConfirmed) 
+          {
+            payAmount();
+          }
+          });
+    }
+
+    function payAmount()
+    {
+      let btnPayment = document.getElementById('btnPayment');
+      let inputPaymentAmount = document.getElementById('paymentAmount');
+      let sellerId = document.getElementById('sellerId');
+      let invoiceNumber = document.getElementById('invoiceNumber');
+      paymentAmount = inputPaymentAmount.value;
+      sellerId = sellerId.innerHTML;
+      invoiceNumber = invoiceNumber.innerHTML;
+      btnPayment.classList.add('disabled');
+      if (paymentAmount<=0.99999999)
+      {
+        playWarning();
+        Toast.fire({
+                  icon: 'error',
+                  title: "Enter Amount"
+        });
+        return;
+      }
+      $.ajax({
+        headers:{  
+           'token':token
+        },
+        type:"post",
+        url:BASE_URL+"payment/add",
+        data: 
+        {  
+           'paymentAmount' : paymentAmount,
+           'sellerId' : sellerId,
+           'invoiceNumber' : invoiceNumber
+        },
+        success:function(response)
+        {
+          let desc = 'You have added '+paymentAmount+' Rupees';
+          console.log(response);
+          if (!response.error)
+          {
+            inputPaymentAmount.value = '';
+            playSuccess();
+            Swal.fire(
+              'Payment Added',
+               desc,
+              'success'
+            )
+            btnPayment.classList.remove('disabled');
+          }
+          else
+          {
+            playWarning();
+            Toast.fire({
+              icon: 'error',
+              title: response.message
+            });
+            btnPayment.classList.remove('disabled');
           }
         }
       });
@@ -1252,6 +1344,7 @@ function getToken() {
       let productDiscount = inputProductDiscount.value;
       inputProductSellPrice.value = percentageDec(totalPrice,productDiscount);
       sumColumn();
+      btnUpdateShow();
     }
 
     //calling this function on sell price change input
@@ -1269,6 +1362,22 @@ function getToken() {
       btnUpdateProduct.style.display = 'block';
       sumColumn();
     }
+
+    function btnUpdateShow()
+    {
+      let sellId = $(event.target)[0].id.replace('productDiscount','');
+      console.log('This is is the sell id from btnUpdateShow '+sellId);
+      let btnUpdateProduct = document.getElementById('btnUpdate'+sellId);
+      btnUpdateProduct.style.display = 'block';
+    }
+
+    function btnUpdateHide()
+    {
+      let sellId = $(event.target)[0].id.replace('productDiscount','');
+      let btnUpdateProduct = document.getElementById('btnUpdate'+sellId);
+      btnUpdateProduct.style.display = 'none';
+    }
+
 
     function percentage(partialValue, totalValue)
     {
