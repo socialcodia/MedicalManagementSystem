@@ -1,4 +1,9 @@
-    let pathname = document.location.pathname;
+    
+
+  let BASE_URL = 'http://socialcodia.net/azmiunanistorepdf/public/';
+  // let BASE_URL = 'https://store.unanipharma.com/api/public/';
+
+     let pathname = document.location.pathname;
     let endPathname = pathname.substring(pathname.lastIndexOf('/') + 1);
 
   function closeModal(){
@@ -76,78 +81,79 @@ function getToken() {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-  function setPageName(pageName)
+  function setPageName(name)
   {
-    pageName.innerHTML = pageName;
+    let pageName = document.getElementById('pageName');
+    pageName.innerHTML = name;
+    document.title = name;
   }
 
   function changePageName()
   {
     let location = window.location.pathname;
     let pathname = location.substring(location.lastIndexOf('/') + 1);
-    let pageName = document.getElementById('pageName');
-
+    
     switch(pathname)
     {
       case 'dashboard':
-        pageName.innerHTML = 'Dashboard';
-        document.title = 'Dashboard';
+          setPageName('Dashboard');
         break;
       case 'sell':
-        pageName.innerHTML = 'Sell Product';
-        document.title = 'Sell Product';
+          setPageName('Sell Product');
       break;
       case 'products':
-        pageName.innerHTML = 'All Products';
-        document.title = 'All Products';
+          setPageName('All Products');
         break;
       case 'addproduct':
-        pageName.innerHTML = 'Add Product';
-        document.title = 'Add Product';
+          setPageName('Add Product');
         break;
       case 'expiringproducts':
-        pageName.innerHTML = 'Expiring Products';
-        document.title = 'Expiring Products';
+          setPageName('Expiring Products');
         break;
       case 'productsnotice':
-        pageName.innerHTML = 'Products Notice';
-        document.title = 'Products Notice';
+          setPageName('Products Notice');
         break;
       case 'expiredproducts':
-        pageName.innerHTML = 'Expired Products';
-        document.title = 'Expired Products';
+          setPageName('Expired Products');
         break;
       case 'productsrecord':
-        pageName.innerHTML = 'Products Record';
-        document.title = 'Products Record';
+          setPageName('Products Record');
         break;
       case 'addproductsinfo':
-        pageName.innerHTML = 'Add Products Information';
-        document.title = 'Add Products Information';
+          setPageName('Add Products Information');
       break;
       case 'editproduct':
-        pageName.innerHTML = 'Edit Product';
-        document.title = 'Edit Product';
+          setPageName('Edit Product');
       break;
       case 'salestoday':
-        pageName.innerHTML = 'Todays Sale';
-        document.title = 'Todays Sale';
+          setPageName('Todays Sale');
         break;
       case 'salesall':
-        pageName.innerHTML = 'All Sales';
-        document.title = 'All Sales';
+          setPageName('All Sales');
         break;
       case 'addseller':
-        pageName.innerHTML = 'Add Seller';
-        document.title = 'Add Seller';
+          setPageName('Add Seller');
         break;
       case 'sellers':
-        pageName.innerHTML = 'All Sellers';
-        document.title = 'All Sellers';
+          setPageName('All Sellers');
+        break;
+      case 'selltoseller':
+          setPageName('Sell To Seller');
+        break;
+      case 'invoices':
+          setPageName('Invoices');
+        break;
+      case 'invoice':
+          setPageName('Invoice');
+        break;
+      case 'payment':
+          setPageName('Payment');
+        break;
+      case 'sellers':
+          setPageName('All Sellers');
         break;
       default:
-        pageName.innerHTML = 'Azmi Unani Store';
-        document.title = 'Azmi Unani Store';
+          setPageName('Azmi Unani Store');
         break;
       
     }
@@ -275,8 +281,6 @@ function getToken() {
 
   }/* end function */)();//execute function and end script
     }
-
-    let BASE_URL = 'http://socialcodia.net/azmiunanistorepdf/public/';
 
     const Toast = Swal.mixin({
         toast: true,
@@ -716,18 +720,12 @@ function getToken() {
                   icon: 'success',
                   title: response.message
               });
+            productQuantity.value = '';
             btnAddProduct.classList.remove('disabled');
           }
           else
           {
             playWarning();
-            productName.value = '';
-            productPrice.value = '';
-            productQuantity.value = '';
-            // manMonth.selectedIndex = 0;
-            // manYear.selectedIndex = 0;
-            // expMonth.selectedIndex = 0;
-            // expYear.selectedIndex = 0;
             Toast.fire({
               icon: 'error',
               title: response.message
@@ -776,6 +774,8 @@ function getToken() {
       let btnPayment = document.getElementById('btnPayment');
       let inputPaymentAmount = document.getElementById('paymentAmount');
       let sellerId = document.getElementById('sellerId');
+      let invoicePaidAmount = document.getElementById('invoicePaidAmount');
+      let invoiceRemainingAmount = document.getElementById('invoiceRemainingAmount');
       let invoiceNumber = document.getElementById('invoiceNumber');
       paymentAmount = inputPaymentAmount.value;
       sellerId = sellerId.innerHTML;
@@ -809,6 +809,8 @@ function getToken() {
           if (!response.error)
           {
             inputPaymentAmount.value = '';
+            invoicePaidAmount.innerHTML = parseInt(invoicePaidAmount.innerHTML)+parseInt(paymentAmount);
+            invoiceRemainingAmount.innerHTML = parseInt(invoiceRemainingAmount.innerHTML)-parseInt(paymentAmount);
             playSuccess();
             Swal.fire(
               'Payment Added',
@@ -1425,6 +1427,34 @@ function getToken() {
       htmlDiscountPrice.innerHTML = sellTotal;
     }
 
+    function alertCancelCreatedInvoice()
+    {
+      let text = "<b>Are you sure want to cancel this invoice</b>";
+      Swal.fire({
+        icon: 'warning',
+        title: 'Are you sure?',
+        showCancelButton: true,
+        confirmButtonText: `Cancel Invoice`,
+        denyButtonText: `No`,
+        html: text
+      }).then((result) => {
+      if (result.isConfirmed) 
+      {
+        cancelCreatedInvoice();
+      }
+      });
+    }
+
+    function cancelCreatedInvoice()
+    {
+      let btnSetSeller = document.getElementById('btnSetSeller');
+      let btnRemSeller = document.getElementById('btnRemSeller');
+      btnRemSeller.classList.add('disabled');
+      btnRemSeller.classList.remove('disabled');
+      location.reload();
+      deleteCreatedInvoice(selectSeller.value);
+    }
+
     function setSeller()
     {
       let selectSeller = document.getElementById('selectSeller');
@@ -1433,8 +1463,12 @@ function getToken() {
       let viewSellerContact = document.getElementById('viewSellerContact');
       let sellerProfileImage = document.getElementById('sellerProfileImage');
       let inputOpenModal = document.getElementById('inputOpenModal');
+      let btnSetSeller = document.getElementById('btnSetSeller');
+      let btnRemSeller = document.getElementById('btnRemSeller');
+      btnSetSeller.classList.add('disabled');
       if (selectSeller.value>0)
       {
+
         let imageUrl = selectSeller.options[selectSeller.selectedIndex].getAttribute('data-icon');
         let sellerAddress = selectSeller.options[selectSeller.selectedIndex].getAttribute('data-address');
         let sellerContactNumber = selectSeller.options[selectSeller.selectedIndex].getAttribute('data-contact');
@@ -1443,12 +1477,18 @@ function getToken() {
         viewSellerAddress.innerHTML = sellerAddress;
         viewSellerContact.innerHTML = sellerContactNumber;
         selectSeller.setAttribute('disabled','');
+        btnSetSeller.classList.remove('disabled');
+        btnSetSeller.style.display = 'none';
+        btnRemSeller.style.display = 'block';
         $('select').formSelect();
         addInvoice(selectSeller.value);
         inputOpenModal.removeAttribute('disabled');
       }
       else
-        Swal.fire('Please Select A Seller.')
+        {
+          Swal.fire('Please Select A Seller.')
+          btnSetSeller.classList.remove('disabled');
+        }
     }
 
     function openModalAlert()

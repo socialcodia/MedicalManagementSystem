@@ -33,6 +33,7 @@
                               <th>Status</th>
                               <th>Total Amount</th>
                               <th>Paid Amount</th>
+                              <th>Remaining Amount</th>
                               <th>Invoice Date</th>
                               <th>Action</th>
                           </tr>
@@ -48,8 +49,11 @@
                                 if (!isset($image) && empty($image))
                                   $image = 'src/img/user.png';
                                 $invoicePaidAmount = (int) $invoice->invoicePaidAmount;
+                                $invoiceRemainingAmount = (int) $invoice->invoiceRemainingAmount;
                                 if (empty($invoicePaidAmount))
                                     $invoicePaidAmount = 0;
+                                if (empty($invoiceRemainingAmount))
+                                  $invoiceRemainingAmount = 0;
                                 if ($invoice->invoiceStatus=='UNPAID')
                                     $color = 'red';
                                 echo "<tr>";
@@ -60,10 +64,11 @@
                                 echo "<td class='blue-text darken-4 chip $color white-text' style='margin-top:25px;'>$invoice->invoiceStatus</td>";
                                 echo "<td>$invoice->invoiceAmount</td>";
                                 echo "<td>$invoicePaidAmount</td>";
+                                echo "<td>$invoiceRemainingAmount</td>";
                                 echo "<td class='blue-text darken-4'>$invoice->invoiceDate</td>";
-                                echo '<td><a href="invoice.php?inum='.$invoice->invoiceNumber.'" style="border: 1px solid white;border-radius: 50%;" class="btn blue" data-position="top" data-tooltip="View Invoice"><i class="material-icons white-text">remove_red_eye
+                                echo '<td><a href="invoice?inum='.$invoice->invoiceNumber.'" style="border: 1px solid white;border-radius: 50%;" class="btn blue" data-position="top" data-tooltip="View Invoice"><i class="material-icons white-text">remove_red_eye
                                     </i></a>';
-                                echo '<a href="payment.php?inum='.$invoice->invoiceNumber.'" style="border: 1px solid white;border-radius: 50%;" class="btn red" data-position="top" data-tooltip="Pay Amount"><i class="material-icons white-text">attach_money
+                                echo '<a href="payment?inum='.$invoice->invoiceNumber.'" style="border: 1px solid white;border-radius: 50%;" class="btn red" data-position="top" data-tooltip="Pay Amount"><i class="material-icons white-text">attach_money
                                 </i></a></td>';
                                 $count++;
                                 echo "</tr>";

@@ -1,6 +1,6 @@
 <div class="navbar-fixed" style="">
     <nav class="white darken-1">
-            <a href="#!" class="brand-logo blue-text hide-on-med-and-down" style="margin-left:35px"><b>Azmi Unani Store</b></a>
+            <a href="#!" class="brand-logo blue-text hide-on-med-and-down" style="margin-left:35px"><b>Unani Pharma</b></a>
                 <div class="col s1 m4 l3">
                     <ul class="left">
                         <li>     

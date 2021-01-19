@@ -140,9 +140,14 @@ class Api
         return $this->getMethodApi("/invoice/".$invoiceNumber);
     }
 
-     function getInvoiceUrlByInvoiceNumber($invoiceNumber)
+    function getInvoiceUrlByInvoiceNumber($invoiceNumber)
     {
         return $this->getMethodApi("/invoice/".$invoiceNumber."/pdf");
+    }
+
+    function getPaymentsByInvoiceNumber($invoiceNumber)
+    {
+        return $this->getMethodApi("/invoice/".$invoiceNumber."/payments");
     }
 
     function getMethodApi($endPoint)

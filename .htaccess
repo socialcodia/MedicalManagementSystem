@@ -18,6 +18,7 @@ RewriteRule ^sellers?$ sellers.php
 RewriteRule ^productsrecord?$ productsrecord.php
 RewriteRule ^editproduct?$ editproduct.php
 RewriteRule ^selltoseller?$ selltoseller.php
+RewriteRule ^invoice?$ invoice.php
 RewriteRule ^payment?$ payment.php
 RewriteRule ^invoices?$ invoices.php
 RewriteRule ^dashboard?$ dashboard.php

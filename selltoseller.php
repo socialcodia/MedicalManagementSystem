@@ -36,6 +36,7 @@ tr.highlighted td {
                   </div>
                   <div class="input-field col s6 m2 l2">
                       <button style="border: 2px solid white; border-radius: 20px; width: 100%; height: 50px;" onclick="setSeller()" class="btn red" id="btnSetSeller">Set Seller</button>
+                      <button style="border: 2px solid white; border-radius: 20px; width: 100%; height: 50px; display: none" onclick="alertCancelCreatedInvoice()" class="btn red" id="btnRemSeller">Cancel</button>
                   </div>
                   <div class="col s4 m3 l3 center">
                     <img src="src/img/user.png" id="sellerProfileImage" class="responive-img circle" style="width: 100px; border: 2px solid blue">
