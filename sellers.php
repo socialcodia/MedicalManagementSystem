@@ -45,8 +45,8 @@
                                   $image = 'src/img/user.png';
                                 echo "<tr>";
                                 echo "<td>$count</td>";
-                                echo "<td><img src='$image' class='circle' style='width:50px; border:2px solid red'/></td>";
-                                echo "<td class='blue-text darken-4'>$seller->sellerFirstName $seller->sellerLastName</td>";
+                                echo "<td><a href='seller?sid=$seller->sellerId'><img src='$image' class='circle' style='width:50px; border:2px solid red'/></a></td>";
+                                echo "<td class='blue-text darken-4'><a href='seller?sid=$seller->sellerId'>$seller->sellerFirstName $seller->sellerLastName</a></td>";
                                 echo "<td style='font-weight:bold'>$seller->sellerEmail</td>";
                                 echo "<td class='blue-text darken-4'>$seller->sellerContactNumber , $seller->sellerContactNumber1</td>";
                                 echo "<td>$seller->sellerAddress</td>";

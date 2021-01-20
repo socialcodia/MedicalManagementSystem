@@ -1,4 +1,8 @@
     
+    function dd(value)
+    {
+      console.log(value);
+    }
 
   let BASE_URL = 'http://socialcodia.net/azmiunanistorepdf/public/';
   // let BASE_URL = 'https://store.unanipharma.com/api/public/';
@@ -221,7 +225,7 @@ function getToken() {
             trow = trows[t];
             if(gethighlight && trow.className === 'highlighted'){return t;}
             else if (!gethighlight){
-                if(trow !== this) { trow.className = 'normalr'; }
+                if(trow !== this) { trow.className = 'normal'; }
                 // else if(this.className === 'normal') { rownum.value = t; }
                 // else { rownum.value = 0; }
             }

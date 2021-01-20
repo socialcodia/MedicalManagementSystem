@@ -82,15 +82,15 @@ tr.highlighted td {
     				    <thead>
     				      <tr>
     			              <th>SR. NO</th>
-    			              <th>Category</th>
-    			              <th>Name</th>
-    			              <th>Size</th>
-    			              <th>Price</th>
-    			              <th>Quantity</th>
-    			              <th>Location</th>
-    			              <th>Brand</th>
-    			              <th>Manufacture</th>
-    			              <th>Expire</th>
+    			              <th>CATEGORY</th>
+    			              <th>NAME</th>
+    			              <th>SIZE</th>
+    			              <th>PRICE</th>
+    			              <th>QUAN</th>
+    			              <th>LOC</th>
+    			              <th>BRAND</th>
+    			              <th>MAN</th>
+    			              <th>EXP</th>
     				      </tr>
     				    </thead>
     				    <tbody>
@@ -106,9 +106,9 @@ tr.highlighted td {
                                   echo "<td>$product->productCategory</td>";
                                   echo "<td style='font-weight:bold'>$product->productName</td>";
                                   echo "<td style='font-weight:bold'>$product->productSize</td>";
-                                  echo "<td style='font-weight:bold'>$product->productPrice</td>";
+                                  echo "<td class='blue-text' style='font-weight:bold'>$product->productPrice</td>";
                                   echo "<td style='font-weight:bold'>$product->productQuantity</td>";
-                                  echo "<td>$product->productLocation</td>";
+                                  echo "<td style='font-weight:bold;'>$product->productLocation</td>";
                                   echo "<td>$product->productBrand</td>";
                                   echo "<td>$product->productManufacture</td>";
                                   echo "<td>$product->productExpire</td>";

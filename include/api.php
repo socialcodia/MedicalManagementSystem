@@ -150,6 +150,16 @@ class Api
         return $this->getMethodApi("/invoice/".$invoiceNumber."/payments");
     }
 
+    function getSellerById($sellerId)
+    {
+        return $this->getMethodApi("/seller/".$sellerId);
+    }
+
+    function getInvoicesBySellerId($sellerId)
+    {
+        return $this->getMethodApi("/seller/".$sellerId."/invoice");
+    }
+
     function getMethodApi($endPoint)
     {
         $domain = API_URL;
