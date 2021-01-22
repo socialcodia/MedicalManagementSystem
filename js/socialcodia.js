@@ -14,6 +14,8 @@
     $('#modal1').modal('close');
   }
 
+
+
   function openModal(){
     $('#modal1').modal('open');
     document.getElementById('productName').focus();
@@ -38,6 +40,10 @@
     else if (endPathname == 'selltoseller')
     {
       getSellers();
+    }
+    else if(endPathname=='dashboard')
+    {
+      getSalesStatus();
     }
   });
 
@@ -172,6 +178,57 @@ function getToken() {
     inputOpenModal.value = null;
     openModal();
     filterProduct();
+  }
+
+  function getSalesStatus()
+  {
+    let ctx = document.getElementById('chartSalesRecord').getContext('2d');
+    $.ajax({
+        headers:{  
+           'token':token
+        },
+        type:"get",
+        url:BASE_URL+"sales/month/status",
+        success:function(response)
+        {
+          console.log(response);
+          if(!response.error)
+          {
+            let status = response.status;
+            console.log(status);
+            let labels = status.map((e)=>{
+              return e.month;
+            });
+
+            let data = status.map((e)=>
+            {
+              return e.totalSales;
+            });
+            var chartSalesRecord = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: ['Sales Per Month'],
+                        data: data,
+                        backgroundColor: ['red','blue','green','yellow','orange','lime'],
+                        borderColor: ['black','black','black','black','black','black',],
+                        borderWidth: 3
+                    }]
+                }
+            });
+          }
+          else
+          {
+            playWarning();
+            Toast.fire({
+              icon: 'error',
+              title: response.message
+            });
+          }
+        }
+      });
+    
   }
 
   let productTable = document.getElementById('productTable');

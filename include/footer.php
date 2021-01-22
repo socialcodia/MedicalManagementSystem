@@ -5,4 +5,6 @@
   <script src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/datatables.min.js"></script>
   <script type="text/javascript" src="js/socialcodia.js"></script>
+  <script type="text/javascript" src="js/chart.js"></script>
+  <script type="text/javascript" src="js/unanipharma.js"></script>
 </html>

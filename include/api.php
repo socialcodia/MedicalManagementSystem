@@ -125,6 +125,11 @@ class Api
         return $this->getMethodApi("counts/products/expiring");
     }
 
+    function getExpiredProductsCount()
+    {
+        return $this->getMethodApi("counts/products/expired");
+    }
+
     function getSellers()
     {
         return $this->getMethodApi("sellers");
