@@ -90,11 +90,13 @@
         <div class="row">
         	<div class="col l6 m6 s12">
         		<div class="card z-depth-0">
-        			<canvas id="chartSalesRecord" width="400" height="400"></canvas>
+        			<canvas id="chatSalesRecordOfDays" width="400" height="400"></canvas>
         		</div>
         	</div>
         	<div class="col l6 m6 s12">
-        		a
+        		<div class="card z-depth-0">
+        			<canvas id="chatSalesRecordOfMonths" width="400" height="400"></canvas>
+        		</div>
         	</div>
         </div>
     </div>

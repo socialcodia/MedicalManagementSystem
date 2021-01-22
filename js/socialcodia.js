@@ -43,7 +43,8 @@
     }
     else if(endPathname=='dashboard')
     {
-      getSalesStatus();
+      getSalesStatusByMonth();
+      getSalesStatusByDays();
     }
   });
 
@@ -180,15 +181,15 @@ function getToken() {
     filterProduct();
   }
 
-  function getSalesStatus()
+  function getSalesStatusByMonth()
   {
-    let ctx = document.getElementById('chartSalesRecord').getContext('2d');
+    let ctx = document.getElementById('chatSalesRecordOfMonths').getContext('2d');
     $.ajax({
         headers:{  
            'token':token
         },
         type:"get",
-        url:BASE_URL+"sales/month/status",
+        url:BASE_URL+"sales/status/months",
         success:function(response)
         {
           console.log(response);
@@ -204,12 +205,12 @@ function getToken() {
             {
               return e.totalSales;
             });
-            var chartSalesRecord = new Chart(ctx, {
-                type: 'bar',
+            let chatSalesRecordOfMonths = new Chart(ctx, {
+                type: 'line',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: ['Sales Per Month'],
+                        label: ['Monthly Sales'],
                         data: data,
                         backgroundColor: ['red','blue','green','yellow','orange','lime'],
                         borderColor: ['black','black','black','black','black','black',],
@@ -228,7 +229,56 @@ function getToken() {
           }
         }
       });
-    
+  }
+
+  function getSalesStatusByDays()
+  {
+    let ctx = document.getElementById('chatSalesRecordOfDays').getContext('2d');
+    $.ajax({
+        headers:{  
+           'token':token
+        },
+        type:"get",
+        url:BASE_URL+"sales/status/days",
+        success:function(response)
+        {
+          console.log(response);
+          if(!response.error)
+          {
+            let status = response.status;
+            console.log(status);
+            let labels = status.map((e)=>{
+              return e.day;
+            });
+
+            let data = status.map((e)=>
+            {
+              return e.totalSales;
+            });
+            let chatSalesRecordOfDays = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: ['Daily Sales'],
+                        data: data,
+                        backgroundColor: ['red','blue','green','yellow','orange','lime'],
+                        borderColor: ['black','black','black','black','black','black',],
+                        borderWidth: 3
+                    }]
+                }
+            });
+          }
+          else
+          {
+            playWarning();
+            Toast.fire({
+              icon: 'error',
+              title: response.message
+            });
+          }
+        }
+      });
   }
 
   let productTable = document.getElementById('productTable');
