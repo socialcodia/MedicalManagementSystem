@@ -45,6 +45,7 @@
     {
       getSalesStatusByMonth();
       getSalesStatusByDays();
+      chartTopProductsRecord();
     }
   });
 
@@ -211,6 +212,57 @@ function getToken() {
                     labels: labels,
                     datasets: [{
                         label: ['Monthly Sales'],
+                        data: data,
+                        backgroundColor: ['red','blue','green','yellow','orange','lime'],
+                        borderColor: ['black','black','black','black','black','black',],
+                        borderWidth: 3
+                    }]
+                }
+            });
+          }
+          else
+          {
+            playWarning();
+            Toast.fire({
+              icon: 'error',
+              title: response.message
+            });
+          }
+        }
+      });
+  }
+
+  function chartTopProductsRecord()
+  {
+    let ctx = document.getElementById('chartTopProductsRecord').getContext('2d');
+    $.ajax({
+        headers:{  
+           'token':token
+        },
+        type:"get",
+        url:BASE_URL+"sales/status/products",
+        success:function(response)
+        {
+          console.log(response);
+          if(!response.error)
+          {
+            let status = response.status;
+            console.log(status);
+            let labels = status.map((e)=>{
+              return e.productName;
+            });
+
+            let data = status.map((e)=>
+            {
+              return e.sellQuantity;
+            });
+            console.log(labels);
+            let chartTopProductsRecord = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: ['TOP 10 Selling Products'],
                         data: data,
                         backgroundColor: ['red','blue','green','yellow','orange','lime'],
                         borderColor: ['black','black','black','black','black','black',],

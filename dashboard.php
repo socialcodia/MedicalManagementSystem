@@ -22,66 +22,66 @@
         <div class="row">
             <div class="col l2 m4 s12">
             	<div class="card">
-            		<div class="card-content blue lighten-3 white-text">
+            		<div class="card-content blue lighten-1	 white-text">
             			<h3 style="font-weight: bold;"><?php echo $productsCount; ?></h3>
             			<p style="font-weight: bold; font-size:20px;">Products</p>
             		</div>
-            		<div class="card-action blue lighten-2 center">
+            		<div class="card-action blue darken-2 center">
             			<a class="white-text" href="products">More<i class="material-icons tiny">open_in_new</i></a>
             		</div>
             	</div>
             </div>
             <div class="col l2 m4 s12">
             	<div class="card">
-            		<div class="card-content blue lighten-3 white-text">
+            		<div class="card-content blue lighten-1 white-text">
             			<h3 style="font-weight: bold;"><?php echo $todaysSalesCount; ?></h3>
             			<p style="font-weight: bold; font-size:20px;">Todays Sale</p>
             		</div>
-            		<div class="card-action blue lighten-2 center">
+            		<div class="card-action blue darken-2 center">
             			<a class="white-text" href="salestoday">More<i class="material-icons tiny">open_in_new</i></a>
             		</div>
             	</div>
             </div>
             <div class="col l2 m4 s12">
             	<div class="card">
-            		<div class="card-content blue lighten-3 white-text">
+            		<div class="card-content blue lighten-1 white-text">
             			<h3 style="font-weight: bold;"><?php echo $brandsCount; ?></h3>
             			<p style="font-weight: bold; font-size:20px;">Brands</p>
             		</div>
-            		<div class="card-action blue lighten-2 center">
+            		<div class="card-action blue darken-2 center">
             			<a class="white-text" href="products">More<i class="material-icons tiny">open_in_new</i></a>
             		</div>
             	</div>
             </div>
             <div class="col l2 m4 s12">
             	<div class="card">
-            		<div class="card-content blue lighten-3 white-text">
+            		<div class="card-content blue lighten-1 white-text">
             			<h3 style="font-weight: bold;"><?php echo $productsNoticeCount; ?></h3>
             			<p style="font-weight: bold; font-size:20px;">Notice</p>
             		</div>
-            		<div class="card-action blue lighten-2 center">
+            		<div class="card-action blue darken-2 center">
             			<a class="white-text" href="productsnotice">More<i class="material-icons tiny">open_in_new</i></a>
             		</div>
             	</div>
             </div>
             <div class="col l2 m4 s12">
                   <div class="card">
-                        <div class="card-content blue lighten-3 white-text">
+                        <div class="card-content blue lighten-1 white-text">
                               <h3 style="font-weight: bold;"><?php echo $productsExpiringCount; ?></h3>
                               <p style="font-weight: bold; font-size:20px;">Expiring</p>
                         </div>
-                        <div class="card-action blue lighten-2 center">
+                        <div class="card-action blue darken-2 center">
                               <a class="white-text" href="expiringproducts">More<i class="material-icons tiny">open_in_new</i></a>
                         </div>
                   </div>
             </div>
             <div class="col l2 m4 s12">
                   <div class="card">
-                        <div class="card-content blue lighten-3 white-text">
+                        <div class="card-content blue lighten-1 white-text">
                               <h3 style="font-weight: bold;"><?php echo $productsExpiredCount; ?></h3>
                               <p style="font-weight: bold; font-size:20px;">Expired</p>
                         </div>
-                        <div class="card-action blue lighten-2 center">
+                        <div class="card-action blue darken-2 center">
                               <a class="white-text" href="expiredproducts">More<i class="material-icons tiny">open_in_new</i></a>
                         </div>
                   </div>
@@ -96,6 +96,11 @@
         	<div class="col l6 m6 s12">
         		<div class="card z-depth-0">
         			<canvas id="chatSalesRecordOfMonths" width="400" height="400"></canvas>
+        		</div>
+        	</div>
+        	<div class="col l6 m6 s12">
+        		<div class="card z-depth-0">
+        			<canvas id="chartTopProductsRecord" width="400" height="400"></canvas>
         		</div>
         	</div>
         </div>
