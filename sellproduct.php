@@ -104,14 +104,14 @@ tr.highlighted td {
                                   echo "<td>$count</td>";
                                   echo "<td class='hide' id='$product->productId'>$product->productId</td>";
                                   echo "<td>$product->productCategory</td>";
-                                  echo "<td style='font-weight:bold'>$product->productName</td>";
+                                  echo "<td style='font-weight:bold' class='blue-text darken-4'>$product->productName</td>";
                                   echo "<td style='font-weight:bold'>$product->productSize</td>";
                                   echo "<td class='blue-text' style='font-weight:bold'>$product->productPrice</td>";
                                   echo "<td style='font-weight:bold'>$product->productQuantity</td>";
                                   echo "<td style='font-weight:bold;'>$product->productLocation</td>";
-                                  echo "<td>$product->productBrand</td>";
+                                  echo "<td class='blue-text darken-4'>$product->productBrand</td>";
                                   echo "<td>$product->productManufacture</td>";
-                                  echo "<td>$product->productExpire</td>";
+                                  echo "<td class='red-text'>$product->productExpire</td>";
                                   $count++;
                                   echo "</tr>";
                                 }

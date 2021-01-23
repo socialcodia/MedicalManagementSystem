@@ -51,14 +51,14 @@
                                 echo "<tr>";
                                 echo "<td>$count</td>";
                                 echo "<td>$product->productCategory</td>";
-                                echo "<td>$product->productName</td>";
+                                echo "<td class='blue-text darken-4'>$product->productName</td>";
                                 echo "<td style='font-weight:bold'>$product->productSize</td>";
                                 echo "<td>$product->productPrice</td>";
                                 echo "<td>$product->saleQuanitty</td>";
-                                echo "<td>$product->salePrice </td>";
-                                echo "<td>$product->productBrand</td>";
+                                echo "<td class='blue-text darken-4'>$product->salePrice </td>";
+                                echo "<td class='blue-text darken-4'>$product->productBrand</td>";
                                 echo "<td>$product->productManufacture</td>";
-                                echo "<td>$product->productExpire</td>";
+                                echo "<td class='red-text'>$product->productExpire</td>";
                                 echo "<td>".date('H:i d/m/yy',$t);".</td>";
                                 $count++;
                                 echo "</tr>";

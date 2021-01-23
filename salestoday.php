@@ -53,7 +53,7 @@
                               foreach ($sales as $product)
                               {
                                 $t = strtotime($product->createdAt);
-                                $t = $product->saleQuanitty*$product->productPrice;
+                                // $t = $product->saleQuanitty*$product->productPrice;
                                 $totalPrice = $product->saleQuanitty*$product->productPrice;
                                 $totalEndPrice = $totalEndPrice+$t;
                                 $totalEndSellPrice = $totalEndSellPrice+$product->salePrice;
@@ -61,15 +61,15 @@
                                 echo "<tr id='rowId$product->saleId'>";
                                 echo "<td>$count</td>";
                                 echo "<td>$product->productCategory</td>";
-                                echo "<td>$product->productName</td>";
+                                echo "<td class='blue-text darken-4'>$product->productName</td>";
                                 echo "<td style='font-weight:bold'>$product->productSize</td>";
                                 echo "<td>$product->productPrice</td>";
                                 echo "<td>$product->saleQuanitty</td>";
-                                echo "<td>$totalPrice</td>";
+                                echo "<td class='blue-text darken-4'>$totalPrice</td>";
                                 echo "<td>$product->salePrice </td>";
-                                echo "<td>$product->productBrand</td>";
+                                echo "<td class='blue-text darken-4'>$product->productBrand</td>";
                                 echo "<td>$product->productManufacture</td>";
-                                echo "<td>$product->productExpire</td>";
+                                echo "<td class='red-text'>$product->productExpire</td>";
                                 echo "<td class='center'>".date('H:i',$t);".</td>";
                                 echo '<td><button id="btnDelete'.$product->saleId.'" value="'.$product->saleId.'" onclick="alertDeleteSaleProduct(this.value)" style="border: 1px solid white;border-radius: 50%;" class="btn red"><i class="material-icons white-text">delete_forever</i></button></td>';
                                 $count++;
