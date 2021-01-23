@@ -1522,7 +1522,7 @@ function getToken() {
       let inputProductDiscount = document.getElementById('productDiscount'+sellId);
       let btnUpdateProduct = document.getElementById('btnUpdate'+sellId);
       console.log(inputProductSellPrice.value);
-      if (endPathname=='selltoseller.php')
+      if (endPathname=='selltoseller' || endPathname=='sell')
           inputProductDiscount.value = percentage(inputProductSellPrice.value,inputProductTotalPrice.innerText);
       btnUpdateProduct.style.display = 'block';
       sumColumn();
