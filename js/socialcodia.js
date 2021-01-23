@@ -246,13 +246,13 @@ function getToken() {
           console.log(response);
           if(!response.error)
           {
-            let status = response.status;
-            console.log(status);
-            let labels = status.map((e)=>{
+            let products = response.products;
+            console.log(products);
+            let labels = products.map((e)=>{
               return e.productName;
             });
 
-            let data = status.map((e)=>
+            let data = products.map((e)=>
             {
               return e.sellQuantity;
             });
