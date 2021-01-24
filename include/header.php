@@ -27,6 +27,7 @@
   ?>
 <style>
 
+        .modal { width: 75% !important ; height: 75% !important ; } 
         .verticalCenter{
           width: 50%;
           height: 50%;
