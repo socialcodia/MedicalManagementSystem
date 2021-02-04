@@ -116,15 +116,34 @@ function getToken() {
     let table = document.getElementById('mstrTable');
     openSellOnCreditModal();
     let SellRecordTableBody = document.getElementById('SellRecordTableBody');
+    let SellOnCreditTableBody = document.getElementById('SellOnCreditTableBody');
+    SellOnCreditTableBody.innerHTML = '';
     let childrenLength = SellRecordTableBody.children.length;
     for(let i=0; i<childrenLength; i++)
     {
       let items = SellRecordTableBody.rows[i];
+      let tr = document.createElement('tr');
+      let saleId = items.cells[2].id.replace('productName','');
       let productName = items.cells[2].innerHTML;
       let productSize = items.cells[3].innerHTML;
-      // let productQuantity = item
+      let productPrice = items.cells[4].innerHTML;
+      let productQuantity = items.cells[5].firstElementChild.value;
       let productSellPrice = items.cells[9].firstElementChild.value;
-      console.log(productSellPrice);
+      let productBrand = items.cells[10].innerHTML;
+
+      let tdSaleId = '<td>'+saleId+'</td>'
+      let tdProductName = '<td>'+productName+'</td>'
+      let tdProductSize = '<td>'+productSize+'</td>'
+      let tdProductPrice = '<td>'+productPrice+'</td>'
+      let tdProductQuantity = '<td>'+productQuantity+'</td>'
+      let tdProductSellPrice = '<td>'+productSellPrice+'</td>'
+      let tdProductBrand = '<td>'+productBrand+'</td>'
+
+      tr.innerHTML = tdSaleId+tdProductName+tdProductSize+tdProductPrice+tdProductQuantity+tdProductSellPrice+tdProductBrand;
+
+      SellOnCreditTableBody.append(tr);
+
+      console.log(saleId);
     }
   }
 
@@ -471,7 +490,7 @@ function getToken() {
       addEvent(document, 'keydown', processkey);
       addEvent(window, 'unload', function(){}); //optional, resets the page for browsers that remember the script state on back and forward buttons
 
-  }/* end function */)();//execute function and end script
+    }/* end function */)();//execute function and end script
     }
 
     const Toast = Swal.mixin({

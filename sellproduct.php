@@ -127,21 +127,21 @@ tr.highlighted td {
             <div class="row green lighten-5" style="">
               <div class="col s12 m6 l6">
                 <div class="input-field">
-                  <i class="material-icons prefix">person</i>
+                  <i class="material-icons blue-text darken-4 prefix">person</i>
                   <input type="text" name="customerName" id="customerName">
                   <label for="customerName">Enter Customer Name</label>
                 </div>
               </div>
               <div class="col s12 m6 l6">
                 <div class="input-field">
-                  <i class="material-icons prefix">call</i>
+                  <i class="material-icons blue-text darken-4 prefix">call</i>
                   <input type="text" name="customerMobile" id="customerMobile">
                   <label for="customerMobile">Enter Customer Mobile Number</label>
                 </div>
               </div>
               <div class="col s12 m12 12">
                 <div class="input-field">
-                  <i class="material-icons prefix">address</i>
+                  <i class="material-icons blue-text darken-4 prefix">address</i>
                   <input type="text" name="customerAddress" id="customerAddress">
                   <label for="customerAddress">Enter Customer Address</label>
                 </div>
@@ -153,7 +153,6 @@ tr.highlighted td {
                 <thead>
                   <tr>
                         <th>SR. NO</th>
-                        <th>CATEGORY</th>
                         <th>NAME</th>
                         <th>SIZE</th>
                         <th>PRICE</th>
@@ -161,6 +160,9 @@ tr.highlighted td {
                         <th>BRAND</th>
                   </tr>
                 </thead>
+                <tbody id="SellOnCreditTableBody">
+                  
+                </tbody>
               </table>
             </div>
           </div>
