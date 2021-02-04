@@ -15,6 +15,9 @@
   }
 
 
+  function openSellOnCreditModal(){
+    $('#modalSellOnCredit').modal('open');
+  }
 
   function openModal(){
     $('#modal1').modal('open');
@@ -100,6 +103,31 @@ function getToken() {
     document.title = name;
   }
 
+  function setButtonAtPageName()
+  {
+    let pageName = document.getElementById('pageName');
+    let button = '<Button class="btn blue" onclick="sellOnCredit()" id="sellOnCredit">Sell On Credit</Button>'
+    pageName.innerHTML = button;
+    document.title = 'name';
+  }
+
+  function sellOnCredit()
+  {
+    let table = document.getElementById('mstrTable');
+    openSellOnCreditModal();
+    let SellRecordTableBody = document.getElementById('SellRecordTableBody');
+    let childrenLength = SellRecordTableBody.children.length;
+    for(let i=0; i<childrenLength; i++)
+    {
+      let items = SellRecordTableBody.rows[i];
+      let productName = items.cells[2].innerHTML;
+      let productSize = items.cells[3].innerHTML;
+      // let productQuantity = item
+      let productSellPrice = items.cells[9].firstElementChild.value;
+      console.log(productSellPrice);
+    }
+  }
+
   function changePageName()
   {
     let location = window.location.pathname;
@@ -111,7 +139,8 @@ function getToken() {
           setPageName('Dashboard');
         break;
       case 'sell':
-          setPageName('Sell Product');
+          // setPageName('Sell Product');
+          setButtonAtPageName();
       break;
       case 'products':
           setPageName('All Products');

@@ -33,7 +33,7 @@ tr.highlighted td {
 		            </div>
 		        </div>
 		      </div>
-  		    <div class="card z-depth-0 blue lighten-3" style="margin: 10px; min-height: 490px;">
+  		    <div class="card z-depth-0 blue lighten-3" style="margin: 10px; min-height: 390px;">
   	        <div class="card-content">
   	            <table id="productTable" class="highlight responsive-table ">
                   <thead>
@@ -69,8 +69,6 @@ tr.highlighted td {
           </div>
         </div>
 
-            <!-- tr.innerHTML='<td><td><input type="text" id="sellId" readonly="readonly"></td></td>'; -->
-
         <div id="modal1" class="modal modal-fixed-footer">
 		      <div class="modal-content">
   		    	<div class="input-field">
@@ -94,34 +92,80 @@ tr.highlighted td {
     				      </tr>
     				    </thead>
     				    <tbody>
-                            <?php
-                            $count = 1;
-                              foreach ($products as $product)
-                              {
-                                if ($product->productQuantity>0)
-                                {
-                                  echo "<tr>";
-                                  echo "<td>$count</td>";
-                                  echo "<td class='hide' id='$product->productId'>$product->productId</td>";
-                                  echo "<td>$product->productCategory</td>";
-                                  echo "<td style='font-weight:bold' class='blue-text darken-4'>$product->productName</td>";
-                                  echo "<td style='font-weight:bold'>$product->productSize</td>";
-                                  echo "<td class='blue-text' style='font-weight:bold'>$product->productPrice</td>";
-                                  echo "<td style='font-weight:bold'>$product->productQuantity</td>";
-                                  echo "<td style='font-weight:bold;'>$product->productLocation</td>";
-                                  echo "<td class='blue-text darken-4'>$product->productBrand</td>";
-                                  echo "<td>$product->productManufacture</td>";
-                                  echo "<td class='red-text'>$product->productExpire</td>";
-                                  $count++;
-                                  echo "</tr>";
-                                }
-                              }
-                            ?>
+                  <?php
+                  $count = 1;
+                    foreach ($products as $product)
+                    {
+                      if ($product->productQuantity>0)
+                      {
+                        echo "<tr>";
+                        echo "<td>$count</td>";
+                        echo "<td class='hide' id='$product->productId'>$product->productId</td>";
+                        echo "<td>$product->productCategory</td>";
+                        echo "<td style='font-weight:bold' class='blue-text darken-4'>$product->productName</td>";
+                        echo "<td style='font-weight:bold'>$product->productSize</td>";
+                        echo "<td class='blue-text' style='font-weight:bold'>$product->productPrice</td>";
+                        echo "<td style='font-weight:bold'>$product->productQuantity</td>";
+                        echo "<td style='font-weight:bold;'>$product->productLocation</td>";
+                        echo "<td class='blue-text darken-4'>$product->productBrand</td>";
+                        echo "<td>$product->productManufacture</td>";
+                        echo "<td class='red-text'>$product->productExpire</td>";
+                        $count++;
+                        echo "</tr>";
+                      }
+                    }
+                    ?>
     				    </tbody>
     				  </table>
   			    </div>	
 		      </div>
 		  </div>
+
+      <div id="modalSellOnCredit" class="modal modal-fixed-footer" style="border:8px ridge blue; border-radius: 40px; box-shadow: inset 0 0 0 5px blue, inset 0 0 0 10px white; ">
+        <h4 class="blue white-text center darken-4" style="margin: 0px">Sell On Credit</h4>
+          <div class="modal-content" style="margin: 0px; padding: 10px">
+            <div class="row green lighten-5" style="">
+              <div class="col s12 m6 l6">
+                <div class="input-field">
+                  <i class="material-icons prefix">person</i>
+                  <input type="text" name="customerName" id="customerName">
+                  <label for="customerName">Enter Customer Name</label>
+                </div>
+              </div>
+              <div class="col s12 m6 l6">
+                <div class="input-field">
+                  <i class="material-icons prefix">call</i>
+                  <input type="text" name="customerMobile" id="customerMobile">
+                  <label for="customerMobile">Enter Customer Mobile Number</label>
+                </div>
+              </div>
+              <div class="col s12 m12 12">
+                <div class="input-field">
+                  <i class="material-icons prefix">address</i>
+                  <input type="text" name="customerAddress" id="customerAddress">
+                  <label for="customerAddress">Enter Customer Address</label>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <table class="display" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                        <th>SR. NO</th>
+                        <th>CATEGORY</th>
+                        <th>NAME</th>
+                        <th>SIZE</th>
+                        <th>PRICE</th>
+                        <th>QUAN</th>
+                        <th>BRAND</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+      </div>
+
     </div>
   <?php }
   else
@@ -139,108 +183,4 @@ tr.highlighted td {
 
 
 <?php require_once dirname(__FILE__).'/include/sidenav.php'; ?>
-
-<!-- <script type="text/javascript"> --
->    // let BASE_URL = 'http://socialcodia.net/azmiunanistore/public/';
-
-	function closeModal(){
-		$('#modal1').modal('close');
-	}
-
-	function openModal(){
-		$('#modal1').modal('open');
-	}
-
-	$(document).ready(function(){
-    	$('.modal').modal();
-  	});
-
-  	function jsonToArray()
-  	{
-  		// var obj = JSON.parse(JS_Obj); 
-				// var res = []; 
-				// console.log(JS_Obj)
-				// for(var i in obj) 
-				// 	res.push(obj[i]); 
-				// console.log(res);
-  	}
-
-	$(document).ready(function ()
-	{
-		$.ajax({
-        headers:{  
-           'token':"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2NpYWxjb2RpYS5jb20iLCJpYXQiOjE2MDgwNDE1NzUsInVzZXJfaWQiOjE5NH0.kitbeuKGwFAoXjRAogLQnZ6WsJkeLtvHQjPNEKZeEqA"
-        },
-        type:"get",
-        url:"http://socialcodia.net/azmiunanistore/public/get/products",
-        success:function(response)
-        {
-          console.log(response);
-          if(!response.error)
-          {
-            products = response.products;
-            var obj = JSON.parse(products); 
-
-            for(let d=1; d<products.length; d++)
-            {
-            	var obj = JSON.parse(products[d]); 
-				var res = []; 
-				console.log(JS_Obj)
-				for(var i in obj) 
-					res.push(obj[i]); 
-				console.log(res);
-            }
-          }
-          else
-          {
-            Toast.fire({
-              icon: 'error',
-              title: response.message
-            });
-          }
-        }
-      });
-    });
-
-	$(document).ready(function ()
-	{
-    	var table = $('#example').DataTable({
-        ajax: 'https://gyrocode.github.io/files/jquery-datatables/arrays.json',
-        "paging":   false,
-        "ordering": false,
-        "info":     false,
-        keys: {
-           keys: [ 13 /* ENTER */, 38 /* UP */, 40 /* DOWN */ ]
-        }
-    });
-    
-    // Handle event when cell gains focus
-    $('#example').on('key-focus.dt', function(e, datatable, cell){
-        // Select highlighted row
-        $(table.row(cell.index().row).node()).addClass('selected');
-    });
-
-    // Handle event when cell looses focus
-    $('#example').on('key-blur.dt', function(e, datatable, cell){
-        // Deselect highlighted row
-        $(table.row(cell.index().row).node()).removeClass('selected');
-    });
-        
-    // Handle key event that hasn't been handled by KeyTable
-    $('#example').on('key.dt', function(e, datatable, key, cell, originalEvent){
-        // If ENTER key is pressed
-        if(key === 13){
-            // Get highlighted row data
-            var data = table.row(cell.index().row).data();
-            console.log(data);
-            // FOR DEMONSTRATION ONLY
-            $("#example-console").html(data.join(', '));
-            closeModal();
-        }
-    });       
-});
-
-
-</script> -->
-
 <?php require_once dirname(__FILE__).'/include/footer.php'; ?>

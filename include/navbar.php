@@ -9,7 +9,7 @@
                     </ul>
                     <ul class="right">
                         <li>     
-                            <a href="" style="margin:0px; font-size: 30px" class="black-text" id="pageName"></a>
+                            <div style="margin:0px; font-size: 30px" class="black-text" id="pageName"></div>
                         </li>
                     </ul>
                 </div>

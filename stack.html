@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="css/icons.css" rel="stylesheet">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/socialcodia.css">
+        <link rel="stylesheet" href="css/toast.css">
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="src/icons/home.png" type="image/gif" sizes="16x16">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> -->
+
+      <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>  
+<style>
+
+        .modal { width: 75% !important ; height: 75% !important ; } 
+        .verticalCenter{
+          width: 50%;
+          height: 50%;
+          overflow: auto;
+          margin: auto;
+          position: absolute;
+          top: 0; left: 0; bottom: 0; right: 0;
+        }
+
+        header, .socialcodia, footer {
+        padding-left: 300px;
+        padding-right:1px;
+      }
+  
+      @media only screen and (max-width : 992px) {
+        header, .socialcodia, footer {
+          padding-left: 0;
+        }
+      }
+      textarea:focus {
+        border-bottom: none!important;
+        box-shadow: none!important;
+      }
+      .notification-badge {
+        position: relative;
+        right: 5px;
+        top: -20px;
+        color: white;
+        font-weight: bold;
+        background-color: red;
+        /*margin: 0 -.8em 10px 20px;*/
+        border-radius: 50%;
+        padding: 3px 7px ;
+    }
+    .notif
+    {
+      position: absolute;
+    }
+    .footer-fixed
+    {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    input[type='number'] 
+    {
+        -moz-appearance:textfield;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button 
+    {
+        -webkit-appearance: none;
+    }
+
+    table.dataTable th.focus,
+    table.dataTable td.focus 
+    {
+      outline: none;
+      .text_filter{
+        width:45%;
+        min-width:200px;
+</style>
+
+
+<body class="" style="font-family: Rajdhani,sans-serif; background-color: #f5f5f7; word-break: break-all;">
+
+  <div class="input-field">
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+  </div>
+
+  <div id="modal1" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <div id="results" class="scrollingdatagrid">  
+              <table id="mstrTable" class="display" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                        <th>SR. NO</th>
+                        <th>CATEGORY</th>
+                        <th>NAME</th>
+                        <th>SIZE</th>
+                        <th>PRICE</th>
+                        <th>QUAN</th>
+                        <th>LOC</th>
+                        <th>BRAND</th>
+                        <th>MAN</th>
+                        <th>EXP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Social Codia</td>
+                      <td style='font-weight:bold' class='blue-text darken-4'>Stack Question</td>
+                      <td style='font-weight:bold'>100KG</td>
+                      <td class='blue-text' style='font-weight:bold'>599</td>
+                      <td style='font-weight:bold'>9867</td>
+                      <td style='font-weight:bold;'>Mumbai</td>
+                      <td class='blue-text darken-4'>Microsoft</td>
+                      <td>02-2014</td>
+                      <td class='red-text'>03-2019</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>  
+          </div>
+      </div>
+
+</body>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+
+<script type="text/javascript">
+      $(document).ready(function ()
+  {
+    $('.modal').modal();
+  });
+  </script>
+
+<script type="text/javascript">
+  
+ let pathname = document.location.pathname;
+    let endPathname = pathname.substring(pathname.lastIndexOf('/') + 1);
+  if (endPathname=='stack.html')
+    {
+      (function() {
+    var trows = document.getElementById('mstrTable').rows, t = trows.length, trow, nextrow,
+    // rownum = document.getElementById('rownum'),
+    addEvent = (function(){return window.addEventListener? function(el, ev, f){
+            el.addEventListener(ev, f, false); //modern browsers
+        }:window.attachEvent? function(el, ev, f){
+            el.attachEvent('on' + ev, function(e){f.apply(el, [e]);}); //IE 8 and less
+        }:function(){return;}; //a very old browser (IE 4 or less, or Mozilla, others, before Netscape 6), so let's skip those
+    })();
+
+    function option(num){
+      // console.log(num);
+        // var o = document.createElement('option');
+        // o.value = num;
+        // rownum.insertBefore(o, rownum.options[1]); //IE 8 and less, must insert to page before setting text property
+        let o = trows[num].cells[0].innerHTML + ' (' + num + ')';
+        return o;
+    }
+
+    // function rownumchange(){
+    //     if(this.value > 0){ //activates the highlight function for the selected row (highlights it)
+    //         highlightRow.apply(trows[this.value]);
+    //     } else { //activates the highlight function for the row that is currently highlighted (turns it off)
+    //         highlightRow.apply(trows[highlightRow(true)]);
+    //     }
+    //     this.blur(); //prevent Mozilla from firing on internal events that change rownum's value
+    // }
+
+    // addEvent(rownum, 'change', rownumchange);
+
+    // rownum.value = 0; //reset for browsers that remember select values on reload
+
+    while (--t > 0) {
+        trow = trows[t];
+        trow.className = 'normal';
+        addEvent(trow, 'click', highlightRow);
+        option(t);
+    }//end while
+
+    function highlightRow(gethighlight) { //now dual use - either set or get the highlighted row
+        gethighlight = gethighlight === true;
+        var t = trows.length;
+        while (--t > 0) {
+            trow = trows[t];
+            if(gethighlight && trow.className === 'highlighted'){return t;}
+            else if (!gethighlight){
+                if(trow !== this) { trow.className = 'normal'; }
+                // else if(this.className === 'normal') { rownum.value = t; }
+                // else { rownum.value = 0; }
+            }
+        }//end while
+
+        return gethighlight? null : this.className = this.className === 'highlighted'? 'normal' : 'highlighted';
+    }//end function
+
+      function movehighlight(way, e){
+          e.preventDefault && e.preventDefault();
+          e.returnValue = false;
+          var idx = highlightRow(true); //gets current index or null if none highlighted
+          // console.log(idx);
+          if(typeof idx === 'number'){//there was a highlighted row
+              idx += way; //increment\decrement the index value
+              
+              if(idx && (nextrow = trows[idx])){ return highlightRow.apply(nextrow); } //index is > 0 and a row exists at that index
+              else if(idx){ return highlightRow.apply(trows[1]); } //index is out of range high, go to first row
+              return highlightRow.apply(trows[trows.length - 1]); //index is out of range low, go to last row
+          }
+          return highlightRow.apply(trows[way > 0? 1 : trows.length - 1]); //none was highlighted - go to 1st if down arrow, last if up arrow
+      }//end function
+
+      function processkey(e){
+          switch(e.keyCode){
+              case 38: {//up arrow
+                  return movehighlight(-1, e);
+              }
+              case 40: {//down arrow
+                  return movehighlight(1, e);
+              }
+              case 13: {//down arrow
+                   let o = highlightRow(true);
+                   let pid = trows[o].childNodes[1].id;
+                  if ($('#modal1').hasClass('open'))
+                  {
+                    let inputInvoiceNumber = document.getElementById('inputInvoiceNumber');
+                    if (endPathname=='sell')
+                      sellProduct(pid);
+                    else if (endPathname=='selltoseller')
+                      sellToSeller(pid,inputInvoiceNumber.value);
+                  }
+                   closeModal();
+                   // $("td",trow).each(function(){
+                   //  //access the value as
+                   //   console.log($(this).html());
+                   //  });
+              }
+              default: {
+                  return true;
+              }
+          }
+      }//end function
+
+      addEvent(document, 'keydown', processkey);
+      addEvent(window, 'unload', function(){}); //optional, resets the page for browsers that remember the script state on back and forward buttons
+
+  }/* end function */)();//execute function and end script
+    }
+</script>
+
+  
+</html>
+
+
