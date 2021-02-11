@@ -48,7 +48,7 @@
                                 echo "<tr>";
                                 echo "<td>$count</td>";
                                 echo "<td>$product->productCategory</td>";
-                                echo "<tdclass='blue-text darken-4'>$product->productName</td>";
+                                echo "<td class='blue-text darken-4'>$product->productName</td>";
                                 echo "<td style='font-weight:bold'>$product->productSize</td>";
                                 echo "<td class='blue-text darken-4'>$product->productPrice</td>";
                                 echo "<td>$product->productQuantity</td>";

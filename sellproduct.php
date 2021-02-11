@@ -76,7 +76,7 @@ tr.highlighted td {
                 <label for="productName">Enter Product Name</label>
             </div>
   		    	<div id="results" class="scrollingdatagrid">	
-    			    <table id="mstrTable" class="display" cellspacing="0" width="100%">
+    			    <table id="mstrTable" tabindex="0" class="display" cellspacing="0" width="100%">
     				    <thead>
     				      <tr>
     			              <th>SR. NO</th>
@@ -128,25 +128,56 @@ tr.highlighted td {
               <div class="col s12 m6 l6">
                 <div class="input-field">
                   <i class="material-icons blue-text darken-4 prefix">person</i>
-                  <input type="text" name="customerName" id="customerName">
+                  <input type="text" name="customerName" id="customerName" required="required">
                   <label for="customerName">Enter Customer Name</label>
                 </div>
               </div>
               <div class="col s12 m6 l6">
                 <div class="input-field">
                   <i class="material-icons blue-text darken-4 prefix">call</i>
-                  <input type="text" name="customerMobile" id="customerMobile">
+                  <input type="number" name="customerMobile" id="customerMobile" required="required">
                   <label for="customerMobile">Enter Customer Mobile Number</label>
                 </div>
               </div>
               <div class="col s12 m12 12">
                 <div class="input-field">
                   <i class="material-icons blue-text darken-4 prefix">address</i>
-                  <input type="text" name="customerAddress" id="customerAddress">
+                  <input type="text" name="customerAddress" id="customerAddress" required="required">
                   <label for="customerAddress">Enter Customer Address</label>
                 </div>
               </div>
-            </div>
+                <div class="center">
+                  <div class="col l4 m4 s12">
+                    <div class="input-field">
+                      <h5 style="display: inline;">Sell Price: </h5> <h5 style="font-weight: bold; display: inline;" id="htmlCreditDiscountPrice"></h5>
+                    </div>
+                  </div>
+                   <div class="col l4 m4 s12">
+                    <div class="input-field">
+                      <i class="material-icons blue-text darken-4 prefix">attach_money</i>
+                      <input type="number" name="paidAmount" onkeyup="creditPaidAmountChangeEvent()" id="paidAmount" value="0">
+                      <label for="paidAmount">Enter Paid Amount</label>
+                    </div>
+                  </div>
+                  <div class="col l4 m3 s12">
+                    <div class="input-field">
+                      <h5 style="display: inline;">Remaining Amount: </h5> <h5 style="font-weight: bold; display: inline;" id="htmlCreditRemainingAmount"></h5>
+                    </div>
+                  </div>
+                </div>
+                 <div class="col s12 m12 12">
+                    <div class="input-field">
+                      <i class="material-icons blue-text darken-4 prefix">description</i>
+                      <input type="text" name="customerDescription" id="customerDescription">
+                      <label for="customerDescription">Enter Any Description</label>
+                    </div>
+                  </div>
+                  <div class="col s12 m6 16 offset-m3 offset-l3">
+                    <div class="input-field">
+                      <button class="btn btn-large blue darken-4" onclick="alertSellOnCredit()" id="btnSellOnCredit" style="width: 100%;  border-radius:40px;">Add Credit Record</button>
+                    </div>
+                  </div>
+              </div>
             <div class="divider"></div>
             <div class="row">
               <table class="display" cellspacing="0" width="100%">
@@ -156,12 +187,12 @@ tr.highlighted td {
                         <th>NAME</th>
                         <th>SIZE</th>
                         <th>PRICE</th>
-                        <th>QUAN</th>
+                        <th>QUANTITY</th>
+                        <th>Sell Price</th>
                         <th>BRAND</th>
                   </tr>
                 </thead>
-                <tbody id="SellOnCreditTableBody">
-                  
+                <tbody id="SellOnCreditTableBody" style="font-weight: bold">
                 </tbody>
               </table>
             </div>

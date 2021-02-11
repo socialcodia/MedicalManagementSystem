@@ -22,4 +22,7 @@ RewriteRule ^selltoseller?$ selltoseller.php
 RewriteRule ^invoice?$ invoice.php
 RewriteRule ^payment?$ payment.php
 RewriteRule ^invoices?$ invoices.php
+RewriteRule ^credit?$ credit.php
+RewriteRule ^credits?$ credits.php
+RewriteRule ^creditors?$ creditors.php
 RewriteRule ^dashboard?$ dashboard.php

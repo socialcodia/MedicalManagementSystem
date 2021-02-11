@@ -55,44 +55,57 @@
                             </tr>
                         </table>
                     </div>
-                     <div class="card-content deep-purple lighten-1">
-                            <div class="row">
+                    <div class="card z-depth-0 col l6 s12 m6" style="border-radius: 40px">
+                    <div class="card-conent ">
+                        <H3 class="center">All Payments</H3>
                     <?php
                         if (!$paymentsResponse->error)
                         {
                             $payments = $paymentsResponse->payments;
                             $count = 1;
-                            foreach ($payments as $pay) 
-                            {
-                            
-                        ?>
-                                <div class="col l18 offset-l2 m8 offset-m2 s12">
-                                    <div class="card blue lighten-3" style="border-radius: 50px; border: 6px ridge black">
-                                        <div class="card-content">
-                                            <div class="row" style="margin-bottom: -0px; font-weight: bold">
-                                                <div class="col l2 m2 s2">
-                                                    <h6 style="font-weight: bold;"><?php echo $count; ?></h6>
-                                                </div>
-                                                <div class="col l4 m4 s4">
-                                                    <h6 style="font-weight: bold;"><?php echo $pay->paymentDate; ?></h6>
-                                                </div>
-                                                <div class="col l2 m6 s6 right red" style="border-radius: 50px">
-                                                    <h6 style="font-weight: bold;" class="center"><?php echo $pay->paymentAmount; ?></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                            
-                                </div>
-                    <?php
-                        $count++;
-                        }
+                            foreach ($payments as $payment) {
+                            ?>
+                            <div class="card" style="border-radius: 30px; margin: 10px;">
+                              <div class="card-content blue lighten-3" style="padding: 0px; border-radius: 30px;">
+                                  <div class="row center" style="">
+                                    <div class="col s1 m1 l1 red lighten-1" style="padding: 10px; border-radius: 30px;">
+                                      <?php echo $count; ?>
+                                    </div>
+                                    <div class="col s7 m7 l7 blue lighten-3" style="font-weight: bold;padding: 10px; ">
+                                      <?php echo "₹".$payment->paymentAmount; ?>
+                                    </div>
+                                    <div class="col s4 m4 l4 orange lighten-3" style="padding: 10px; border-radius: 30px;">
+                                      <?php echo $payment->paymentDate; ?>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <?php
+                            $count++;
+                          }
                     }
                     ?>
-
+                </div>
+            </div>
+            <div class="col l6 s12 m6" >
+                    <div class="card z-depth-0 row" style="margin: 10px; border-radius: 40px;" >
+                      <div class="card-content col l12 s12 m12">
+                        <H3 class="center" style="margin: 0px">Add Amount</H3>
+                        <div>
+                            <div class="input-field">
+                                <i class="material-icons prefix"><img src="src/icons/inr.png" class="hoverable circle" width="40"></i>
+                                <input type="number" name="paymentAmount" id="paymentAmount" style="text-transform:uppercase">
+                                <label for="paymentAmount">Enter Amount</label>
+                            </div>
+                            <div class="input-field center">
+                                <button type="submit" style="width: 60%; border-radius: 30px;" class="btn red btn-large" onclick="alertMakePayment()" name="btnPayment" id="btnPayment">Accept Payment</button>
                             </div>
                         </div>
+                      </div>
+                    </div>
                 </div>
-                <div class="card row  col l8 offset-l2" style="border-radius: 40px">
+                </div>
+                <!-- <div class="card row  col l8 offset-l2" style="border-radius: 40px">
                     <div class="card-content col l10 offset-l1">
                         <H3 class="center">Add Amount</H3>
                         <div class="row">
@@ -106,7 +119,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
         </div>
     </div>
  <?php }

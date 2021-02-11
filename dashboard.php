@@ -21,7 +21,7 @@
     <div class="socialcodia">
         <div class="row">
             <div class="col l2 m4 s12">
-            	<div class="card">
+            	<div class="card hoverable">
             		<div class="card-content blue lighten-1	 white-text">
             			<h3 style="font-weight: bold;"><?php echo $productsCount; ?></h3>
             			<p style="font-weight: bold; font-size:20px;">Products</p>
@@ -32,7 +32,7 @@
             	</div>
             </div>
             <div class="col l2 m4 s12">
-            	<div class="card">
+            	<div class="card hoverable">
             		<div class="card-content blue lighten-1 white-text">
             			<h3 style="font-weight: bold;"><?php echo $todaysSalesCount; ?></h3>
             			<p style="font-weight: bold; font-size:20px;">Todays Sale</p>
@@ -43,7 +43,7 @@
             	</div>
             </div>
             <div class="col l2 m4 s12">
-            	<div class="card">
+            	<div class="card hoverable">
             		<div class="card-content blue lighten-1 white-text">
             			<h3 style="font-weight: bold;"><?php echo $brandsCount; ?></h3>
             			<p style="font-weight: bold; font-size:20px;">Brands</p>
@@ -54,7 +54,7 @@
             	</div>
             </div>
             <div class="col l2 m4 s12">
-            	<div class="card">
+            	<div class="card hoverable">
             		<div class="card-content blue lighten-1 white-text">
             			<h3 style="font-weight: bold;"><?php echo $productsNoticeCount; ?></h3>
             			<p style="font-weight: bold; font-size:20px;">Notice</p>
@@ -65,7 +65,7 @@
             	</div>
             </div>
             <div class="col l2 m4 s12">
-                  <div class="card">
+                  <div class="card hoverable">
                         <div class="card-content blue lighten-1 white-text">
                               <h3 style="font-weight: bold;"><?php echo $productsExpiringCount; ?></h3>
                               <p style="font-weight: bold; font-size:20px;">Expiring</p>
@@ -76,7 +76,7 @@
                   </div>
             </div>
             <div class="col l2 m4 s12">
-                  <div class="card">
+                  <div class="card hoverable">
                         <div class="card-content blue lighten-1 white-text">
                               <h3 style="font-weight: bold;"><?php echo $productsExpiredCount; ?></h3>
                               <p style="font-weight: bold; font-size:20px;">Expired</p>

@@ -142,28 +142,44 @@ class Api
 
     function getInvoiceByInvoiceNumber($invoiceNumber)
     {
-        return $this->getMethodApi("/invoice/".$invoiceNumber);
+        return $this->getMethodApi("invoice/".$invoiceNumber);
     }
 
     function getInvoiceUrlByInvoiceNumber($invoiceNumber)
     {
-        return $this->getMethodApi("/invoice/".$invoiceNumber."/pdf");
+        return $this->getMethodApi("invoice/".$invoiceNumber."/pdf");
     }
 
     function getPaymentsByInvoiceNumber($invoiceNumber)
     {
-        return $this->getMethodApi("/invoice/".$invoiceNumber."/payments");
+        return $this->getMethodApi("invoice/".$invoiceNumber."/payments");
     }
 
     function getSellerById($sellerId)
     {
-        return $this->getMethodApi("/seller/".$sellerId);
+        return $this->getMethodApi("seller/".$sellerId);
     }
 
     function getInvoicesBySellerId($sellerId)
     {
-        return $this->getMethodApi("/seller/".$sellerId."/invoice");
+        return $this->getMethodApi("seller/".$sellerId."/invoice");
     }
+
+    function getCredits()
+    {
+        return $this->getMethodApi("credits");
+    }
+
+    function getCreditById($creditId)
+    {
+        return $this->getMethodApi("credit/".$creditId);
+    }
+
+    function getPaymentsByCreditId($creditId)
+    {
+        return $this->getMethodApi("credit/".$creditId."/payments");
+    }
+
 
     function getMethodApi($endPoint)
     {
